@@ -24,12 +24,17 @@ const blackKeyStyles = {
   zIndex: 1,
 };
 
+const blackKeyStylesOn = {
+  ...blackKeyStyles,
+  backgroundColor: "#aaabcb",
+}
+
 const WhiteKey: React.FC<{ nowplay: boolean }> = ({ nowplay }) => {
   return <div style={nowplay ? keyStylesOn : keyStyles}></div>;
 };
 
-const BlackKey: React.FC = () => {
-  return <div style={blackKeyStyles}></div>;
+const BlackKey: React.FC<{ nowplay: boolean }> = ({ nowplay }) => {
+  return <div style={nowplay ? blackKeyStylesOn : blackKeyStyles}></div>;
 };
 
 const PianoMode: React.FC = () => {
@@ -43,26 +48,26 @@ const PianoMode: React.FC = () => {
     switch (index % 7) {
       case 0:
         list.push(<WhiteKey key={index} nowplay={tone === "do"} />);
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#do"} />);
         break;
       case 1:
         list.push(<WhiteKey key={index} nowplay={tone === "re"} />);
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#re"} />);
         break;
       case 2:
         list.push(<WhiteKey key={index} nowplay={tone === "mi"} />);
         break;
       case 3:
         list.push(<WhiteKey key={index} nowplay={tone === "fa"} />);
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#fa"} />);
         break;
       case 4:
         list.push(<WhiteKey key={index} nowplay={tone === "so"} />);
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#so"} />);
         break;
       case 5:
         list.push(<WhiteKey key={index} nowplay={tone === "ra"} />);
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#ra"} />);
         break;
       case 6:
         list.push(<WhiteKey key={index} nowplay={tone === "shi"} />);
