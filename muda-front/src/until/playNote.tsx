@@ -55,8 +55,22 @@ function setLittleEndian(bytes:any,p:any,data:any){
 }
 
 // どの音を鳴らすか
-function　playNote(){
-
+function　playNote(noteName: string){
+    if (noteName === "do") {
+        play(48, 1);
+    } else if (noteName === "re") {
+        play(50, 1);
+    } else if (noteName === "mi") {
+        play(52, 1);
+    } else if (noteName === "fa") {
+        play(53, 1);
+    } else if (noteName === "so") {
+        play(55, 1);
+    } else if (noteName === "ra") {
+        play(57, 1);
+    } else if (noteName === "shi") {
+        play(59, 1);
+    }
 }
 
 export default playNote;
