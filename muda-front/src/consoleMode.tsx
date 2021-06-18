@@ -5,6 +5,7 @@ const ConsoleMode: React.FC = () => {
   return (
     <div>
       <p>コンソール</p>
+      <textarea className="console"></textarea>
     </div>
   );
 };
