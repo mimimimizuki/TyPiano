@@ -1,4 +1,9 @@
+import sleep from "./sleep";
+
 // 音を鳴らす関数
+const bpm = 120
+const duration = (60000 / bpm) / 2 * 20
+
 var audio:any;
 
 function play(node:any,sec:any){
