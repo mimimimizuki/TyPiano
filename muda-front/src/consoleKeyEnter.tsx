@@ -1,3 +1,4 @@
+import { time } from "console";
 import React, { useState, useEffect } from "react";
 
 var audio:any; 
@@ -54,6 +55,13 @@ function setLittleEndian(bytes:any,p:any,data:any){
     bytes[p+3] = ((data >> 24) & 0xFF);
 }
 
+// 音を鳴らす時間をミリ秒で定義
+const bpm = 120
+const duration = (60000 / bpm) / 2
+async function sleep(msec:any) {
+    await new Promise(resolve => setTimeout(resolve, msec))
+}
+
 type nowGotted = "d" | "r" | "m" | "f" | "s" | "sh" | "none";
 type note = "do" | "re" | "mi" | "fa" | "so" | "ra" | "shi" | "none";
 
@@ -61,6 +69,7 @@ const ReceiveKeyEnter: React.FC = () => {
   const [receivedKey, setReceivedKey] = useState<nowGotted>("none");
   const [note, setNote] = useState<note>("none");
   var noteStr = ""
+  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi"]
 
   const d = 68;
   const o = 79;
@@ -78,6 +87,22 @@ const ReceiveKeyEnter: React.FC = () => {
     function setFromNone(event: { keyCode: number | Number }) {
       const keyCode = event.keyCode;
       if (keyCode === enter) {
+        var pointer = 0
+        while (pointer+1 < noteStr.length) {
+            if (noteStr[pointer] === " ") {
+                sleep(duration/1000)
+            } else {
+                var oneNote = noteStr.substr(pointer, 2)
+                if (oneNote === "sh" || oneNote[0] === "#") {
+                    oneNote += noteStr[pointer+2]
+                    pointer += 3
+                } else {
+                    pointer += 2
+                }
+                if (oneNote in noteTypeArray) {
+                }
+            }
+        }
         noteStr = ""
         setReceivedKey("none");
       } else if (keyCode === d) {
@@ -99,26 +124,32 @@ const ReceiveKeyEnter: React.FC = () => {
         noteStr += "h"
         setReceivedKey("sh");
       } else if (keyCode === o && receivedKey === "d") {
+        noteStr += "o"
         setNote("do");
         play(48,1);
         setReceivedKey("none");
       } else if (keyCode === o && receivedKey === "s") {
+        noteStr += "o"
         setNote("so");
         play(55,1);
         setReceivedKey("none");
       } else if (keyCode === e && receivedKey === "r") {
+        noteStr += "e"
         setNote("re");
         play(50,1);
         setReceivedKey("none");
       } else if (keyCode === i && receivedKey === "m") {
+        noteStr += "i"
         setNote("mi");
         play(52,1);
         setReceivedKey("none");
       } else if (keyCode === i && receivedKey === "sh") {
+        noteStr += "i"
         setNote("shi");
         play(59,1);
         setReceivedKey("none");
       } else if (keyCode === a && receivedKey === "f") {
+        noteStr += "a"
         setNote("fa");
         play(53,1);
         setReceivedKey("none");
