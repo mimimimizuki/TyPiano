@@ -25,12 +25,17 @@ const blackKeyStyles = {
   zIndex: 1,
 };
 
+const blackKeyStylesOn = {
+  ...blackKeyStyles,
+  backgroundColor: "#aaabcb",
+}
+
 const WhiteKey: React.FC<{ nowplay: boolean }> = ({ nowplay }) => {
   return <div style={nowplay ? keyStylesOn : keyStyles}></div>;
 };
 
-const BlackKey: React.FC = () => {
-  return <div style={blackKeyStyles}></div>;
+const BlackKey: React.FC<{ nowplay: boolean }> = ({ nowplay }) => {
+  return <div style={nowplay ? blackKeyStylesOn : blackKeyStyles}></div>;
 };
 
 const PianoMode: React.FC = () => {
@@ -55,13 +60,13 @@ const PianoMode: React.FC = () => {
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "do" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5}　　nowplay={tone === "#do"} />);
         break;
       case 1:
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "re" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#re"}　/>);
         break;
       case 2:
         list.push(
@@ -72,19 +77,19 @@ const PianoMode: React.FC = () => {
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "fa" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#fa"} />);
         break;
       case 4:
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "so" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#so"} />);
         break;
       case 5:
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "ra" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#ra"} />);
         break;
       case 6:
         list.push(
