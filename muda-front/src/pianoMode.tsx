@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useReceiveKeyEnter from "./useReceiveKeyEnter";
 import { useWindowDimensions } from "./useWindowDimentions";
+import abcjs from "abcjs";
 
 const keyStyles = {
   height: 300,
@@ -33,6 +34,8 @@ const BlackKey: React.FC = () => {
 };
 
 const PianoMode: React.FC = () => {
+  const [noteList, setNoteList] = useState<string>("");
+
   const windowDimensions = useWindowDimensions();
   const keyNum = windowDimensions.width / 64;
   const tone = useReceiveKeyEnter();
@@ -72,7 +75,33 @@ const PianoMode: React.FC = () => {
     }
   }
 
-  return <div style={{ display: "flex" }}>{list}</div>;
+  useEffect(() => {
+    var addTone = "";
+    if (tone === "do") {
+      addTone = "C";
+    } else if (tone === "re") {
+      addTone = "D";
+    } else if (tone === "mi") {
+      addTone = "E";
+    } else if (tone === "fa") {
+      addTone = "F";
+    } else if (tone === "so") {
+      addTone = "G";
+    } else if (tone === "ra") {
+      addTone = "A";
+    } else if (tone === "shi") {
+      addTone = "B";
+    }
+    setNoteList((prevNoteList) => prevNoteList + addTone);
+  }, [tone]);
+  abcjs.renderAbc("abc", noteList);
+
+  return (
+    <div>
+      <div id="abc"></div>
+      <div style={{ display: "flex" }}>{list}</div>
+    </div>
+  );
 };
 
 export default PianoMode;
