@@ -98,9 +98,7 @@ if __name__ == "__main__":
             print("音階", pitch)
             # 押したキーが辞書の中に存在するとき、音を鳴らす
             if pitch in pitchs:
-                # os.system('play -n synth %s sin %s' % (duration/1000, pitchs[pitch]))
-                os.system('play -n synth sin %s' % (pitchs[pitch]))
-                os.system("^C")
+                os.system('play -n synth %s sin %s' % (duration/1000, pitchs[pitch]))
             elif pitch == "qq" or pitch == "QQ":
                 break
     else:
