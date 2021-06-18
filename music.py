@@ -2,6 +2,7 @@
 # from msvcrt import getch
 import os 
 import sys, tty, termios
+import time
 
 def getch(char_width=2):
     '''get a fixed number of typed characters from the terminal. 
@@ -26,7 +27,6 @@ duration = int((60000 / bpm) / 2)
 # 音を鳴らす関数を定義
 def play_pitch(frequency, duration):
     os.system('play -n synth %s sin %s' % (duration/1000, frequency))
-    # Beep(frequency, duration)
 # 半音上げ下げする関数を定義
 def down_pitch(base_pitch):
     return int(round(base_pitch / onestep_pitch))
@@ -90,18 +90,36 @@ pitchs["SO"] = G5
 pitchs["#SO"] = Gis5
 pitchs["RA"] = A5
 
-while True:
-    # 入力されたキーを認識する
-    pitch = getch()
-    # バイト列から文字列に変換する
-    # print(bytes_keyboard)
-    # str_keyboard = bytes_keyboard.decode("utf-8")
-    # 文字列を小文字に揃える
-    # pitch = bytes_keyboard.lower()
-    print("音階", pitch)
-    # 押したキーが辞書の中に存在するとき、音を鳴らす
-    if pitch in pitchs:
-        play_pitch(pitchs[pitch], duration)
-    # 終了させるときはqを押す
-    elif pitch == 'QQ' or pitch == 'qq':
-        break
+if __name__ == "__main__":
+    mode = int(input())
+    if mode == 1:
+        while True:
+            pitch = getch()
+            print("音階", pitch)
+            # 押したキーが辞書の中に存在するとき、音を鳴らす
+            if pitch in pitchs:
+                # os.system('play -n synth %s sin %s' % (duration/1000, pitchs[pitch]))
+                os.system('play -n synth sin %s' % (pitchs[pitch]))
+                os.system("^C")
+            elif pitch == "qq" or pitch == "QQ":
+                break
+    else:
+        while True:
+            s = input()
+            if s == "q" or s == "Q":
+                break
+            pointer = 0
+            while pointer+1 < len(s):
+                if s[pointer] == " ":
+                    time.sleep(duration/1000)
+                    pointer += 1
+                else:
+                    ch = s[pointer:pointer+2]
+                    if ch == "sh" or ch[0] == "#":
+                        ch += s[pointer+2]
+                        pointer += 3
+                    else:
+                        pointer += 2
+                    if ch in pitchs:
+                        os.system('play -n synth %s sin %s' % (duration/1000, pitchs[ch]))
+            
