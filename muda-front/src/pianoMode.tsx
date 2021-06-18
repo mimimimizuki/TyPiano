@@ -42,33 +42,54 @@ const PianoMode: React.FC = () => {
 
   const list = [];
 
+  // どこから有効キーにするか
+  const playStartIndex = Math.floor(keyNum / 7 / 2) * 7;
+  // どこまで有効キーにするか
+  const playEndIndex = playStartIndex + 7;
+
+  //鍵盤作成
   for (let index = 0; index < keyNum; index++) {
+    const playable = index >= playStartIndex && index < playEndIndex;
     switch (index % 7) {
       case 0:
-        list.push(<WhiteKey key={index} nowplay={tone === "do"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "do" : false} />
+        );
         list.push(<BlackKey key={index + 0.5} />);
         break;
       case 1:
-        list.push(<WhiteKey key={index} nowplay={tone === "re"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "re" : false} />
+        );
         list.push(<BlackKey key={index + 0.5} />);
         break;
       case 2:
-        list.push(<WhiteKey key={index} nowplay={tone === "mi"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "mi" : false} />
+        );
         break;
       case 3:
-        list.push(<WhiteKey key={index} nowplay={tone === "fa"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "fa" : false} />
+        );
         list.push(<BlackKey key={index + 0.5} />);
         break;
       case 4:
-        list.push(<WhiteKey key={index} nowplay={tone === "so"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "so" : false} />
+        );
         list.push(<BlackKey key={index + 0.5} />);
         break;
       case 5:
-        list.push(<WhiteKey key={index} nowplay={tone === "ra"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "ra" : false} />
+        );
         list.push(<BlackKey key={index + 0.5} />);
         break;
       case 6:
-        list.push(<WhiteKey key={index} nowplay={tone === "shi"} />);
+        list.push(
+          <WhiteKey key={index} nowplay={playable ? tone === "shi" : false} />
+        );
         break;
       default:
         break;
