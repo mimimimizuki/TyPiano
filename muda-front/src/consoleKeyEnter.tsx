@@ -1,5 +1,6 @@
 import { time } from "console";
 import React, { useState, useEffect } from "react";
+import toABC from "./until/toABC";
 
 var audio:any; 
 function play(node:any,sec:any){
@@ -42,7 +43,7 @@ function play(node:any,sec:any){
     audio=new Audio("data:audio/wav;base64,"+btoa(str));
     audio.play();
 }
-      
+
 function stop(){
     if (audio&&!audio.ended){
       audio.pause();audio.currentTime=0;
@@ -55,6 +56,7 @@ function setLittleEndian(bytes:any,p:any,data:any){
     bytes[p+3] = ((data >> 24) & 0xFF);
 }
 
+// 間隔空けるための関数
 // 音を鳴らす時間をミリ秒で定義
 const bpm = 120
 const duration = (60000 / bpm) / 2
@@ -69,6 +71,7 @@ const ReceiveKeyEnter: React.FC = () => {
   const [receivedKey, setReceivedKey] = useState<nowGotted>("none");
   const [note, setNote] = useState<note>("none");
   var noteStr = ""
+  var noteABCStr = ""
   var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi"]
 
   const d = 68;
@@ -100,6 +103,7 @@ const ReceiveKeyEnter: React.FC = () => {
                     pointer += 2
                 }
                 if (oneNote in noteTypeArray) {
+                    noteABCStr += toABC(oneNote)
                 }
             }
         }
