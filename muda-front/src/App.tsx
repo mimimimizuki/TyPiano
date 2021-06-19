@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Header from "./Header";
 import ConsoleMode, { ConsoleTab } from "./consoleMode";
 import PianoMode, { PianoBase } from "./pianoMode";
 
@@ -34,6 +35,7 @@ function App() {
   }
   return (
     <div className="App" onClick={handleClick}>
+      <Header />
       {!finShowPiano && <ConsoleMode doRemove={!showConsole} />}
       <ConsoleTab inConsole={finShowConsole} />
       {!finShowConsole && <PianoMode doRemove={!showPiano} />}
