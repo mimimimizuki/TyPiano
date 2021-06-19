@@ -57,7 +57,7 @@ const ConsoleMode: React.FC = () => {
     <div>
       <div style={consoleColor}>
         {list}
-        <p>$ {nowString}</p>
+        <p id="command">$ {nowString}</p>
       </div>
     </div>
   );

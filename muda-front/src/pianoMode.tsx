@@ -103,7 +103,7 @@ const PianoMode: React.FC = () => {
   }
 
   useEffect(() => {
-    var addTone = toABC(tone, counter);
+    var addTone = toABC(tone, counter, 0);
     
     setNoteList((prevNoteList) => prevNoteList + addTone);
   }, [tone]);

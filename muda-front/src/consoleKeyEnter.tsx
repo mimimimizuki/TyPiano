@@ -34,6 +34,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       if (keyCode === keyCodeList.enter_code) {
         var pointer = 0;
         var octaveCounter = 0;
+        var lengthCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
           if (tmpNoteStr[pointer] === ",") {
             octaveCounter -= 1;
@@ -42,6 +43,14 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           } else if (tmpNoteStr[pointer] === ".") {
             octaveCounter += 1;
             pointer += 1;
+            continue;
+          } else if (tmpNoteStr[pointer] === "+") {
+            pointer += 1;
+            lengthCounter += 1;
+            continue;
+          } else if (tmpNoteStr[pointer] === "-") {
+            pointer += 1;
+            lengthCounter -= 1;
             continue;
           }
           var oneNote = tmpNoteStr.substr(pointer, 2);
@@ -55,9 +64,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             pointer += 2;
           }
           if (noteTypeArray.includes(oneNote)) {
-            console.log(octaveCounter)
-            tmpNoteABCStr += toABC(oneNote, octaveCounter);
+            tmpNoteABCStr += toABC(oneNote, octaveCounter, lengthCounter);
             octaveCounter = 0;
+            lengthCounter = 0;
             // setNoteABCStr(tmpNoteABCStr)
           } else {
             pointer -= 1
@@ -82,7 +91,15 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             octaveCounter += 1;
             pointer += 1;
             continue;
-        　} 
+        　} else if (tmpNoteStr[pointer] === "+") {
+            pointer += 1;
+            lengthCounter += 1;
+            continue;
+          } else if (tmpNoteStr[pointer] === "-") {
+            pointer += 1;
+            lengthCounter -= 1;
+            continue;
+          }
           oneNote = tmpNoteStr.substr(pointer, 2);
           if (oneNote === "sh" || oneNote[0] === "#") {
               oneNote += tmpNoteStr[pointer + 2];
@@ -97,9 +114,16 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
               if (oneNote === " ") {
                   await wait(60/bpm/2);
               } else {
-                  playNote(oneNote,octaveCounter,60/bpm)
+                  var beep_time = 60/bpm;
+                  if (lengthCounter > 0) {
+                    beep_time = beep_time * (2*lengthCounter);
+                  } else if (lengthCounter < 0) {
+                    beep_time = beep_time / (2*lengthCounter);
+                  }
+                  playNote(oneNote,octaveCounter,beep_time)
                   octaveCounter = 0;
-                  await wait(60/bpm);
+                  lengthCounter = 0
+                  await wait(beep_time);
               }
           } else { // ミスタイプのとき
               pointer -= 1
@@ -149,7 +173,13 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       } else if (keyCode === keyCodeList.space_code) {
         tmpNoteStr += " ";
         setNoteStr(tmpNoteStr);
-      } else {
+      } else if (keyCode === 187) {
+        tmpNoteStr += "+";
+        setNoteStr(tmpNoteStr);
+      } else if (keyCode === 189) {
+        tmpNoteStr += "-";
+        setNoteStr(tmpNoteStr);
+      }　else {
         // setReceivedKey("none");
       }
     }
