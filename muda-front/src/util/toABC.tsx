@@ -43,10 +43,10 @@ function toABC(beforeNote: string,counter:number, lengthCounter:number) {
   if (lengthCounter > 0) {
     afterNote += (2**lengthCounter).toString();
   } else if (lengthCounter < 0) {
-    afterNote += "1/"+(2**lengthCounter).toString();
+    afterNote += "1/"+(2**(-1*lengthCounter)).toString();
   }
-
-    return afterNote
+  console.log(afterNote)
+  return afterNote
 }
 
 export default toABC;
