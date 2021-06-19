@@ -165,8 +165,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   }
 
   useEffect(() => {
-    var addTone = toABC(tone, counter);
-
+    var addTone = toABC(tone, counter, 0);
     setNoteList((prevNoteList) => prevNoteList + addTone);
   }, [tone]);
   abcjs.renderAbc("abc", noteList);

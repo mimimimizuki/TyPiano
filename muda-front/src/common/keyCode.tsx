@@ -13,3 +13,5 @@ export const sharp_code = 51;
 export const upOctave_code = 190;
 export const downOctave_code = 188;
 export const space_code = 32;
+export const backspace_code = 8;
+export const delete_code = 46;
