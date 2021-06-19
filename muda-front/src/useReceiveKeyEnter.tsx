@@ -30,7 +30,6 @@ const useReceiveKeyEnter = (): [note,number] => {
       } else if (keyCode === keyCodeList.upOctave_code) {
         tmpCounter += 1
         setCounter(tmpCounter)
-        console.log(tmpCounter)
       } else if (keyCode === keyCodeList.d_code) {
         if (isSharp) {
           setReceivedKey("#d");
@@ -60,7 +59,6 @@ const useReceiveKeyEnter = (): [note,number] => {
       } else if (keyCode === keyCodeList.h_code && receivedKey === "s") {
         setReceivedKey("sh");
       } else if (keyCode === keyCodeList.o_code && receivedKey === "d") {
-        console.log(tmpCounter)
         tmpNowCounter = tmpCounter
         setNowCounter(tmpNowCounter);
         tmpCounter = 0
@@ -73,7 +71,6 @@ const useReceiveKeyEnter = (): [note,number] => {
           setNote("do");
           oneNote = "do"
         }
-        console.log(tmpNowCounter)
         playNote(oneNote,tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.o_code && receivedKey === "s") {
