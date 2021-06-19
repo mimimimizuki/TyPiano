@@ -48,6 +48,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           } else {
             pointer -= 1
           }
+          else{
+            pointer -= 1;
+          }
         }
         // ドレミとABCを配列に入れる
         setNoteStrHist((prev) => [...prev, tmpNoteStr]);
@@ -75,6 +78,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
               await wait(1); // todo:今は1秒やけど音の長さにする
             } else {
                 pointer -= 1
+            }
+            else {
+              pointer -= 1;
             }
           }
         }
