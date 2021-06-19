@@ -33,7 +33,15 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       const keyCode = event.keyCode;
       if (keyCode === keyCodeList.enter_code) {
         var pointer = 0;
+        var octaveCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
+          if (tmpNoteStr[pointer] === ",") {
+            octaveCounter -= 1;
+            pointer += 1;
+          } else if (tmpNoteStr[pointer] === ".") {
+            octaveCounter += 1;
+            pointer += 1;
+          }
           var oneNote = tmpNoteStr.substr(pointer, 2);
           if (oneNote === "sh" || oneNote[0] === "#") {
             oneNote += tmpNoteStr[pointer + 2];
@@ -43,7 +51,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           }
           console.log(oneNote);
           if (noteTypeArray.includes(oneNote)) {
-            tmpNoteABCStr += toABC(oneNote, 0);
+            tmpNoteABCStr += toABC(oneNote, octaveCounter);
             // setNoteABCStr(tmpNoteABCStr)
           } else {
             pointer -= 1
@@ -58,15 +66,17 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
         // 音鳴らすための処理
         pointer = 0;
-        var octaveCounter = 0;
+        octaveCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
           if (tmpNoteStr[pointer] === " ") {
             // todo:これ多分無理
             sleep(duration / 1000);
           } else if (tmpNoteStr[pointer] === ",") {
             octaveCounter -= 1;
+            pointer += 1;
           } else if (tmpNoteStr[pointer] === ".") {
             octaveCounter += 1;
+            pointer += 1;
           } else {
             oneNote = tmpNoteStr.substr(pointer, 2);
             if (oneNote === "sh" || oneNote[0] === "#") {
