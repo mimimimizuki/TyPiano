@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import abcjs from "abcjs";
 import useConsoleKeyEnter from "./consoleKeyEnter";
 import "./slide.css";
+import "./flash.css";
 
 const consoleBase = {
   backgroundColor: "#041344",
@@ -26,6 +27,12 @@ const consoleOut = {
   animationName: "slide-out",
   animationDuration: "2s",
   animationFillMode: "forwards",
+};
+
+const flash = {
+  animationName: "flash",
+  animationDuration: "1s",
+  animationIterationCount: "infinite",
 };
 
 const ConsoleBlock: React.FC<{ command: string; abc: string; i: number }> = ({
@@ -72,7 +79,10 @@ export const ConsoleMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
     <div>
       <div key="c" style={doRemove ? consoleOut : consoleOn}>
         {list}
-        <p>$ {nowString}</p>
+        <p>
+          $ {nowString}
+          <span style={flash}>|</span>
+        </p>
       </div>
     </div>
   );
