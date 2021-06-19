@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import play from "./play_function"
 import playNote from "./until/playNote";
 
 type nowGotted = "d" | "r" | "m" | "f" | "s" | "sh" | "#d" | "#r" | "#f" | "#s" | "none";
 type note = "do" | "re" | "mi" | "fa" | "so" | "ra" | "shi" | "#do" | "#re" | "#fa" | "#so" | "#ra" | "none" ;
 
-const useReceiveKeyEnter = (): note => {
+const useReceiveKeyEnter = (): [note,number] => {
   const [receivedKey, setReceivedKey] = useState<nowGotted>("none");
   const [isSharp , setSharp] = useState(false);
   const [note, setNote] = useState<note>("none");
   const [counter, setCounter] = useState<number>(0);
+  const [nowCounter, setNowCounter] = useState(0);
   
   const sharp = 51;
   const downOctave = 188;
@@ -64,8 +64,7 @@ const useReceiveKeyEnter = (): note => {
       } else if (keyCode === h && receivedKey === "s") {
         setReceivedKey("sh");
       } else if (keyCode === o && receivedKey === "d") {
-        const nowCounter = counter;
-        console.log(nowCounter)
+        setNowCounter(counter);
         setCounter(0);
         if (isSharp){
           setNote("#do");
@@ -76,7 +75,7 @@ const useReceiveKeyEnter = (): note => {
         playNote(note,nowCounter, 1);
         setReceivedKey("none");
       } else if (keyCode === o && receivedKey === "s") {
-        const nowCounter = counter;
+        setNowCounter(counter);
         setCounter(0);
         if (isSharp){
           setNote("#so");
@@ -87,7 +86,7 @@ const useReceiveKeyEnter = (): note => {
         playNote(note,nowCounter, 1);
         setReceivedKey("none");
       } else if (keyCode === e && receivedKey === "r") {
-        const nowCounter = counter;
+        setNowCounter(counter);
         setCounter(0);
         if (isSharp){
           setNote("#re");
@@ -98,21 +97,21 @@ const useReceiveKeyEnter = (): note => {
         playNote(note, nowCounter, 1)
         setReceivedKey("none");
       } else if (keyCode === i && receivedKey === "m") {
-        const nowCounter = counter;
+        setNowCounter(counter);
         setCounter(0);
         setSharp(false);
         setNote("mi");
         playNote(note,nowCounter, 1);
         setReceivedKey("none");
       } else if (keyCode === i && receivedKey === "sh") {
-        const nowCounter = counter;
+        setNowCounter(counter);
         setCounter(0);
         setSharp(false);
         setNote("shi");
         playNote(note,nowCounter, 1);
         setReceivedKey("none");
       } else if (keyCode === a && receivedKey === "f") {
-        const nowCounter = counter;
+        setNowCounter(counter);
         setCounter(0);
         if (isSharp){
           setNote("#fa");
@@ -123,7 +122,7 @@ const useReceiveKeyEnter = (): note => {
         playNote(note,nowCounter, 1);
         setReceivedKey("none");
       } else if (keyCode === a && receivedKey === "r") {
-        const nowCounter = counter;
+        setNowCounter(counter);
         setCounter(0);
         if (isSharp){
           setNote("#ra");
@@ -144,8 +143,8 @@ const useReceiveKeyEnter = (): note => {
       document.removeEventListener("keydown", setFromNone);
     };
   }, [receivedKey]);
-
-  return note;
+  console.log(nowCounter)
+  return [note, nowCounter];
 };
 
 export default useReceiveKeyEnter;

@@ -1,5 +1,5 @@
 // 音をアルファベットに直す関数
-function toABC(beforeNote: string) {
+function toABC(beforeNote: string,counter:number) {
   var afterNote = "";
   if (beforeNote === "do") {
     afterNote += "C";
@@ -26,6 +26,11 @@ function toABC(beforeNote: string) {
   } else if (beforeNote === "shi") {
     afterNote += "B";
   }
+  if (counter == 1){
+    console.log("here")
+    afterNote = afterNote.toLowerCase();
+  }
+  console.log(afterNote)
     return afterNote
 }
 

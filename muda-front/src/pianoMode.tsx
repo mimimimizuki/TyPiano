@@ -44,7 +44,7 @@ const PianoMode: React.FC = () => {
 
   const windowDimensions = useWindowDimensions();
   const keyNum = windowDimensions.width / 64;
-  const tone = useReceiveKeyEnter();
+  const [tone,counter] = useReceiveKeyEnter();
 
   const list = [];
 
@@ -103,10 +103,9 @@ const PianoMode: React.FC = () => {
   }
 
   useEffect(() => {
-    var addTone = toABC(tone);
+    var addTone = toABC(tone, counter);
     
     setNoteList((prevNoteList) => prevNoteList + addTone);
-    console.log(noteList)
   }, [tone]);
   abcjs.renderAbc("abc", noteList);
 

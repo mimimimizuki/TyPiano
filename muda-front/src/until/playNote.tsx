@@ -62,7 +62,7 @@ function setLittleEndian(bytes:any,p:any,data:any){
 // どの音を鳴らすか
 function　playNote(noteName: string, counter: number, sec: number){
     if (noteName === "do") {
-        play(48+counter*12, sec);
+        play(36, sec);
     } else if (noteName == "#do") {
         play(49+counter*12, sec);
     } else if (noteName === "re") {

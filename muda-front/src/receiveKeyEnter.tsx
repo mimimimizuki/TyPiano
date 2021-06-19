@@ -1,3 +1,4 @@
+import { notEqual } from "assert";
 import React, { useState, useEffect } from "react";
 import play from "./play_function"
 
@@ -65,11 +66,10 @@ const ReceiveKeyEnter: React.FC = () => {
         setReceivedKey("sh");
       } else if (keyCode === o && receivedKey === "d") {
         const nowCounter = counter;
-        console.log(nowCounter)
         setCounter(0);
         if (isSharp){
           setNote("#do");
-          play(49+nowCounter*12,1);
+          play(48+nowCounter*12,1);
           setSharp(false);
         } else{
           setNote("do");

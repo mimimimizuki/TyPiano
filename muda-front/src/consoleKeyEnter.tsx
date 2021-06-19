@@ -55,7 +55,7 @@ const ConsoleKeyEnter: React.FC = () => {
                 }
                 console.log(oneNote)
                 if (noteTypeArray.includes(oneNote)) {
-                    tmpNoteABCStr += toABC(oneNote)
+                    tmpNoteABCStr += toABC(oneNote, 0)
                     setNoteABCStr(tmpNoteABCStr)
                     playNote(oneNote,0,1)
                     await wait(1) // todo:今は1秒やけど音の長さにする
