@@ -1,6 +1,6 @@
 import React from "react";
 import abcjs from "abcjs";
-import useConsoleKeyEnter from "./useConsoleKeyEnter";
+import useConsoleKeyEnter from "./consoleKeyEnter";
 
 const consoleColor = {
   backgroundColor: "#041344",
@@ -33,10 +33,7 @@ const ConsoleBlock: React.FC<{ command: string; abc: string; i: number }> = ({
 
 const ConsoleMode: React.FC = () => {
   // [["doremi", "remifa"], ["CDE", "EFG"], "dor"のイメージ
-  // const [commandHist, ABCHist, nowString] = useConsoleKeyEnter();
-  const [ABC, nowString] = useConsoleKeyEnter();
-  //今だけ
-  const ABCHist = [ABC];
+  const [nowString, commandHist, ABCHist] = useConsoleKeyEnter();
 
   // 画面に表示するもの
   const list = [];
@@ -48,7 +45,11 @@ const ConsoleMode: React.FC = () => {
     // abcは五線譜に使う
     // iはidとかなので気にしなくていい
     list.push(
-      <ConsoleBlock command={ABCHist[i]} abc={ABCHist[i]} i={i}></ConsoleBlock>
+      <ConsoleBlock
+        command={commandHist[i]}
+        abc={ABCHist[i]}
+        i={i}
+      ></ConsoleBlock>
     );
   }
   // 履歴と、一番下に今のやつを表示
