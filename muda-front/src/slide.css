@@ -9,9 +9,13 @@
 
 @keyframes slide-out {
   0% {
+    padding-top: 10px;
+    padding-bottom: 5px;
     height: 60vh;
   }
   100% {
+    padding-top: 0;
+    padding-bottom: 0;
     height: 0;
   }
 }

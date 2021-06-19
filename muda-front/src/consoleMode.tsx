@@ -9,7 +9,7 @@ const consoleBase = {
   height: "30px",
   paddingRight: 20,
   paddingLeft: 20,
-  paddingTop: 5,
+  paddingTop: 10,
   paddingBottom: 5,
   overflowY: "scroll" as "scroll",
 };
