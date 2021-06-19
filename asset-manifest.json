@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mudaApp/static/css/main.bfe5c144.chunk.css",
-    "main.js": "/mudaApp/static/js/main.fc8b7e0a.chunk.js",
-    "main.js.map": "/mudaApp/static/js/main.fc8b7e0a.chunk.js.map",
+    "main.js": "/mudaApp/static/js/main.d2129ea5.chunk.js",
+    "main.js.map": "/mudaApp/static/js/main.d2129ea5.chunk.js.map",
     "runtime-main.js": "/mudaApp/static/js/runtime-main.c1bc8a40.js",
     "runtime-main.js.map": "/mudaApp/static/js/runtime-main.c1bc8a40.js.map",
     "static/js/2.92253578.chunk.js": "/mudaApp/static/js/2.92253578.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.c1bc8a40.js",
     "static/js/2.92253578.chunk.js",
     "static/css/main.bfe5c144.chunk.css",
-    "static/js/main.fc8b7e0a.chunk.js"
+    "static/js/main.d2129ea5.chunk.js"
   ]
 }
