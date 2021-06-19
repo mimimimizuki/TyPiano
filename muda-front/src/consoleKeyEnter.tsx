@@ -21,18 +21,6 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
   var tmpNoteABCStr = "";
   var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi"];
 
-  const d = 68;
-  const o = 79;
-  const r = 82;
-  const e = 69;
-  const m = 77;
-  const i = 73;
-  const f = 70;
-  const a = 65;
-  const s = 83;
-  const h = 72;
-  const enter = 13;
-
   const wait = (sec: any) => {
     return new Promise((resolve, reject) => {
       setTimeout(resolve, sec * 1000);
@@ -43,7 +31,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
   useEffect(() => {
     async function setFromNone(event: { keyCode: number | Number }) {
       const keyCode = event.keyCode;
-      if (keyCode === enter) {
+      if (keyCode === keyCodeList.enter_code) {
         var pointer = 0;
         while (pointer + 1 < tmpNoteStr.length) {
           var oneNote = tmpNoteStr.substr(pointer, 2);
@@ -88,35 +76,38 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
         }
         tmpNoteStr = "";
         tmpNoteABCStr = "";
-      } else if (keyCode === keyCodeList.d_Code) {
+      } else if (keyCode === keyCodeList.d_code) {
         tmpNoteStr += "d";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.r_Code) {
+      } else if (keyCode === keyCodeList.r_code) {
         tmpNoteStr += "r";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.m_Code) {
+      } else if (keyCode === keyCodeList.m_code) {
         tmpNoteStr += "m";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.f_Code) {
+      } else if (keyCode === keyCodeList.f_code) {
         tmpNoteStr += "f";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.s_Code) {
+      } else if (keyCode === keyCodeList.s_code) {
         tmpNoteStr += "s";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.h_Code) {
+      } else if (keyCode === keyCodeList.h_code) {
         tmpNoteStr += "h";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.o_Code) {
+      } else if (keyCode === keyCodeList.o_code) {
         tmpNoteStr += "o";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.e_Code) {
+      } else if (keyCode === keyCodeList.e_code) {
         tmpNoteStr += "e";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.i_Code) {
+      } else if (keyCode === keyCodeList.i_code) {
         tmpNoteStr += "i";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.a_Code) {
+      } else if (keyCode === keyCodeList.a_code) {
         tmpNoteStr += "a";
+        setNoteStr(tmpNoteStr);
+      } else if (keyCode === keyCodeList.sharp_code) {
+        tmpNoteStr += "#";
         setNoteStr(tmpNoteStr);
       } else {
         // setReceivedKey("none");
