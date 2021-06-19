@@ -27,13 +27,14 @@ const ReceiveKeyEnter: React.FC = () => {
   useEffect(() => {
     function setFromNone(event: { keyCode: number | Number }) {
       const keyCode = event.keyCode;
-      console.log(counter)
+      setNote("none");
       if (keyCode == sharp) {
         setSharp(true);
       } else if (keyCode == downOctave) {
         setCounter(counter-1);
       } else if (keyCode == upOctave) {
-        setCounter(counter+1)
+        const nowCount = counter + 1
+        setCounter(nowCount)
       } else if (keyCode === d) {
         if (isSharp) {
           setReceivedKey("#d");
@@ -64,6 +65,7 @@ const ReceiveKeyEnter: React.FC = () => {
         setReceivedKey("sh");
       } else if (keyCode === o && receivedKey === "d") {
         const nowCounter = counter;
+        console.log(nowCounter)
         setCounter(0);
         if (isSharp){
           setNote("#do");
@@ -86,7 +88,6 @@ const ReceiveKeyEnter: React.FC = () => {
           play(55+nowCounter*12,1);
         }
         setReceivedKey("none");
-        setCounter(0);
       } else if (keyCode === e && receivedKey === "r") {
         const nowCounter = counter;
         setCounter(0);
@@ -99,21 +100,20 @@ const ReceiveKeyEnter: React.FC = () => {
           play(50+nowCounter*12,1);
         }
         setReceivedKey("none");
-        setCounter(0);
       } else if (keyCode === i && receivedKey === "m") {
         const nowCounter = counter;
         setCounter(0);
+        setSharp(false);
         setNote("mi");
         play(52+nowCounter*12,1);
         setReceivedKey("none");
-        setCounter(0);
       } else if (keyCode === i && receivedKey === "sh") {
         const nowCounter = counter;
         setCounter(0);
+        setSharp(false);
         setNote("shi");
         play(59+nowCounter*12,1);
         setReceivedKey("none");
-        setCounter(0);
       } else if (keyCode === a && receivedKey === "f") {
         const nowCounter = counter;
         setCounter(0);
@@ -126,7 +126,6 @@ const ReceiveKeyEnter: React.FC = () => {
           play(53+nowCounter*12,1);
         }
         setReceivedKey("none");
-        setCounter(0);
       } else if (keyCode === a && receivedKey === "r") {
         const nowCounter = counter;
         setCounter(0);
@@ -139,7 +138,6 @@ const ReceiveKeyEnter: React.FC = () => {
           play(57+nowCounter*12,1);
         }
         setReceivedKey("none");
-        setCounter(0);
       } else {
         setReceivedKey("none");
         setCounter(0);

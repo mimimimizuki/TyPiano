@@ -60,21 +60,31 @@ function setLittleEndian(bytes:any,p:any,data:any){
 }
 
 // どの音を鳴らすか
-function　playNote(noteName: string){
+function　playNote(noteName: string, counter: number, sec: number){
     if (noteName === "do") {
-        play(48, 1);
+        play(48+counter*12, sec);
+    } else if (noteName == "#do") {
+        play(49+counter*12, sec);
     } else if (noteName === "re") {
-        play(50, 1);
+        play(50+counter*12, sec);
+    } else if (noteName === "#re") {
+        play(51+counter*12, sec);
     } else if (noteName === "mi") {
-        play(52, 1);
+        play(52+counter*12, sec);
     } else if (noteName === "fa") {
-        play(53, 1);
+        play(53+counter*12, sec);
+    } else if (noteName === "#fa") {
+        play(54+counter*12, sec);
     } else if (noteName === "so") {
-        play(55, 1);
+        play(55+counter*12, sec);
+    } else if (noteName === "#so") {
+        play(56+counter*12, sec);
     } else if (noteName === "ra") {
-        play(57, 1);
+        play(57+counter*12, sec);
+    } else if (noteName === "#ra") {
+        play(58+counter*12, sec);
     } else if (noteName === "shi") {
-        play(59, 1);
+        play(59+counter*12, sec);
     }
 }
 
