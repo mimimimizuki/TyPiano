@@ -1,0 +1,11 @@
+export const d_Code = 68;
+export const o_Code = 79;
+export const e_Code = 69;
+export const r_Code = 82;
+export const m_Code = 77;
+export const i_Code = 73;
+export const f_Code = 70;
+export const a_Code = 65;
+export const s_Code = 83;
+export const h_Code = 72;
+export const enter_Code = 13;

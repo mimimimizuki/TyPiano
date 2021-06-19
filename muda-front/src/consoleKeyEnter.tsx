@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import playNote from "./until/playNote";
-import toABC from "./until/toABC";
-import sleep from "./until/sleep";
+import playNote from "./util/playNote";
+import toABC from "./util/toABC";
+import sleep from "./util/sleep";
+import * as keyCodeList from "./common/keyCode";
 
 const bpm = 120;
 const duration = 60000 / bpm / 2;
@@ -87,40 +88,34 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
         }
         tmpNoteStr = "";
         tmpNoteABCStr = "";
-      } else if (keyCode === d) {
+      } else if (keyCode === keyCodeList.d_Code) {
         tmpNoteStr += "d";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === r) {
+      } else if (keyCode === keyCodeList.r_Code) {
         tmpNoteStr += "r";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === m) {
+      } else if (keyCode === keyCodeList.m_Code) {
         tmpNoteStr += "m";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === f) {
+      } else if (keyCode === keyCodeList.f_Code) {
         tmpNoteStr += "f";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === s) {
+      } else if (keyCode === keyCodeList.s_Code) {
         tmpNoteStr += "s";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === h) {
+      } else if (keyCode === keyCodeList.h_Code) {
         tmpNoteStr += "h";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === o) {
+      } else if (keyCode === keyCodeList.o_Code) {
         tmpNoteStr += "o";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === o) {
-        tmpNoteStr += "o";
-        setNoteStr(tmpNoteStr);
-      } else if (keyCode === e) {
+      } else if (keyCode === keyCodeList.e_Code) {
         tmpNoteStr += "e";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === i) {
+      } else if (keyCode === keyCodeList.i_Code) {
         tmpNoteStr += "i";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === i) {
-        tmpNoteStr += "i";
-        setNoteStr(tmpNoteStr);
-      } else if (keyCode === a) {
+      } else if (keyCode === keyCodeList.a_Code) {
         tmpNoteStr += "a";
         setNoteStr(tmpNoteStr);
       } else {
