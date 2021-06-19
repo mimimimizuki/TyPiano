@@ -54,7 +54,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           }
           console.log(oneNote);
           if (noteTypeArray.includes(oneNote)) {
-            tmpNoteABCStr += toABC(oneNote);
+            tmpNoteABCStr += toABC(oneNote, 0);
             // setNoteABCStr(tmpNoteABCStr)
           }
         }
