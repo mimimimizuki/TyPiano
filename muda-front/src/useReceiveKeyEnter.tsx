@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import playNote from "./until/playNote";
+import playNote from "./util/playNote";
 
 type nowGotted = "d" | "r" | "m" | "f" | "s" | "sh" | "#d" | "#r" | "#f" | "#s" | "none";
 type note = "do" | "re" | "mi" | "fa" | "so" | "ra" | "shi" | "#do" | "#re" | "#fa" | "#so" | "#ra" | "none" ;
