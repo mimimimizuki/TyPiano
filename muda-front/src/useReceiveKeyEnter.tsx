@@ -74,8 +74,10 @@ const useReceiveKeyEnter = (): [note,number] => {
         playNote(oneNote,tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.o_code && receivedKey === "s") {
-        setNowCounter(counter);
-        setCounter(0);
+        tmpNowCounter = tmpCounter
+        setNowCounter(tmpNowCounter);
+        tmpCounter = 0
+        setCounter(tmpCounter);
         if (isSharp){
           setNote("#so");
           oneNote = "#so"
@@ -84,11 +86,13 @@ const useReceiveKeyEnter = (): [note,number] => {
           setNote("so");
           oneNote = "so"
         }
-        playNote(oneNote,nowCounter, noteConfig.noteLength);
+        playNote(oneNote, tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.e_code && receivedKey === "r") {
-        setNowCounter(counter);
-        setCounter(0);
+        tmpNowCounter = tmpCounter
+        setNowCounter(tmpNowCounter);
+        tmpCounter = 0
+        setCounter(tmpCounter);
         if (isSharp){
           setNote("#re");
           oneNote = "#re"
@@ -97,27 +101,33 @@ const useReceiveKeyEnter = (): [note,number] => {
           setNote("re");
           oneNote = "re"
         }
-        playNote(oneNote, nowCounter, noteConfig.noteLength)
+        playNote(oneNote, tmpNowCounter, noteConfig.noteLength)
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.i_code && receivedKey === "m") {
-        setNowCounter(counter);
-        setCounter(0);
+        tmpNowCounter = tmpCounter
+        setNowCounter(tmpNowCounter);
+        tmpCounter = 0
+        setCounter(tmpCounter);
         setSharp(false);
         setNote("mi");
         oneNote = "mi"
-        playNote(oneNote,nowCounter, noteConfig.noteLength);
+        playNote(oneNote, tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.i_code && receivedKey === "sh") {
-        setNowCounter(counter);
-        setCounter(0);
+        tmpNowCounter = tmpCounter
+        setNowCounter(tmpNowCounter);
+        tmpCounter = 0
+        setCounter(tmpCounter);
         setSharp(false);
         setNote("shi");
         oneNote = "shi"
-        playNote(oneNote,nowCounter, noteConfig.noteLength);
+        playNote(oneNote, tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.a_code && receivedKey === "f") {
-        setNowCounter(counter);
-        setCounter(0);
+        tmpNowCounter = tmpCounter
+        setNowCounter(tmpNowCounter);
+        tmpCounter = 0
+        setCounter(tmpCounter);
         if (isSharp){
           setNote("#fa");
           oneNote = "#fa"
@@ -126,11 +136,13 @@ const useReceiveKeyEnter = (): [note,number] => {
           setNote("fa");
           oneNote = "fa"
         }
-        playNote(oneNote,nowCounter, noteConfig.noteLength);
+        playNote(oneNote, tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else if (keyCode === keyCodeList.a_code && receivedKey === "r") {
-        setNowCounter(counter);
-        setCounter(0);
+        tmpNowCounter = tmpCounter
+        setNowCounter(tmpNowCounter);
+        tmpCounter = 0
+        setCounter(tmpCounter);
         if (isSharp){
           setNote("#ra");
           oneNote = "#ra"
@@ -139,11 +151,12 @@ const useReceiveKeyEnter = (): [note,number] => {
           setNote("ra");
           oneNote = "ra"
         }
-        playNote(oneNote,nowCounter, noteConfig.noteLength);
+        playNote(oneNote, tmpNowCounter, noteConfig.noteLength);
         setReceivedKey("none");
       } else {
         setReceivedKey("none");
-        setCounter(0);
+        tmpCounter = 0
+        setCounter(tmpCounter);
       }
     }
 
