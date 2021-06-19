@@ -6,10 +6,7 @@ import sleep from "./until/sleep";
 const bpm = 120
 const duration = (60000 / bpm) / 2
 
-const ConsoleKeyEnter: React.FC = () => {
-  // 追加の仕方
-//   const hoge = ""
-//   setNoteStr(prev => [...prev, hoge])
+const useConsoleKeyEnter = ():[string, string[], string[]] => {
   // 今のドレミ
   const [noteStr, setNoteStr] = useState<string>("");
   // 今のABC
@@ -136,7 +133,7 @@ const ConsoleKeyEnter: React.FC = () => {
     };
   }, [noteStrHist, noteABCStrHist]);
 
-  return <div>{noteStr}</div>;
+  return [noteStr, noteStrHist, noteABCStrHist];
 };
 
-export default ConsoleKeyEnter;
+export default useConsoleKeyEnter;
