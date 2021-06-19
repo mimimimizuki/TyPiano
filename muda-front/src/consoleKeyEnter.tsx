@@ -176,7 +176,10 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       } else if (keyCode === 189) {
         tmpNoteStr += "-";
         setNoteStr(tmpNoteStr);
-      }　else {
+      } else if (keyCode === keyCodeList.backspace_code || keyCode === keyCodeList.delete_code) {
+        tmpNoteStr = tmpNoteStr.substring(0, tmpNoteStr.length-1);
+        setNoteStr(tmpNoteStr);
+      } else {
         // setReceivedKey("none");
       }
     }
