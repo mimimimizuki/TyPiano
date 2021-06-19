@@ -72,7 +72,7 @@ export const ConsoleMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
     <div>
       <div key="c" style={doRemove ? consoleOut : consoleOn}>
         {list}
-        <p>$ {nowString}</p>
+        <p id="command">$ {nowString}</p>
       </div>
     </div>
   );
