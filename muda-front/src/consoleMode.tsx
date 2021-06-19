@@ -1,8 +1,9 @@
 import React from "react";
 import abcjs from "abcjs";
 import useConsoleKeyEnter from "./consoleKeyEnter";
+import "./slide.css";
 
-const consoleColor = {
+const consoleOn = {
   backgroundColor: "#041344",
   color: "#FFFFFF",
   height: "60vh",
@@ -11,6 +12,15 @@ const consoleColor = {
   paddingTop: 5,
   paddingBottom: 5,
   overflowY: "scroll" as "scroll",
+};
+
+const consoleBase = {
+  backgroundColor: "#041344",
+  color: "#FFFFFF",
+  paddingRight: 20,
+  paddingLeft: 20,
+  paddingTop: 5,
+  paddingBottom: 5,
 };
 
 const ConsoleBlock: React.FC<{ command: string; abc: string; i: number }> = ({
@@ -55,10 +65,11 @@ const ConsoleMode: React.FC = () => {
   // 履歴と、一番下に今のやつを表示
   return (
     <div>
-      <div style={consoleColor}>
+      <div style={consoleOn}>
         {list}
         <p>$ {nowString}</p>
       </div>
+      <div style={consoleBase}>コンソールモードへ</div>
     </div>
   );
 };
