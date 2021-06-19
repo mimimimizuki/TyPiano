@@ -58,12 +58,11 @@ const useConsoleKeyEnter = ():[string, string[], string[]] => {
                 // setNoteABCStr(tmpNoteABCStr)
             }
         }
-        console.log(tmpNoteStr)
-        console.log(tmpNoteABCStr)
+        // ドレミとABCを配列に入れる
         setNoteStrHist(prev => [...prev, tmpNoteStr])
         setNoteABCStrHist(prev => [...prev, tmpNoteABCStr])
-        console.log(noteStrHist)
-        console.log(noteABCStrHist)
+
+        // 音鳴らすための処理
         pointer = 0
         while (pointer+1 < tmpNoteStr.length) {
             if (tmpNoteStr[pointer] === " ") { // todo:これ多分無理
