@@ -4,7 +4,7 @@ import toABC from "./util/toABC";
 import sleep from "./util/sleep";
 import * as keyCodeList from "./common/keyCode";
 
-const bpm = 120;
+const bpm = 64;
 const duration = 60000 / bpm / 2;
 
 const useConsoleKeyEnter = (): [string, string[], string[]] => {
@@ -114,11 +114,11 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
               if (oneNote === " ") {
                   await wait(60/bpm/2);
               } else {
-                  var beep_time = 60/bpm;
+                  var beep_time = 60/(bpm*4);
                   if (lengthCounter > 0) {
                     beep_time = beep_time * (2*lengthCounter);
                   } else if (lengthCounter < 0) {
-                    beep_time = beep_time / (2*lengthCounter);
+                    beep_time = beep_time / (-2*lengthCounter);
                   }
                   playNote(oneNote,octaveCounter,beep_time)
                   octaveCounter = 0;
