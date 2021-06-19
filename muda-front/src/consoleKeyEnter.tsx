@@ -6,14 +6,16 @@ import sleep from "./until/sleep";
 const bpm = 120
 const duration = (60000 / bpm) / 2
 
-type nowGotted = "d" | "r" | "m" | "f" | "s" | "sh" | "none";
-type note = "do" | "re" | "mi" | "fa" | "so" | "ra" | "shi" | "none";
-
-const ConsoleKeyEnter: React.FC = () => {
-  const [receivedKey, setReceivedKey] = useState<nowGotted>("none");
-  const [note, setNote] = useState<note>("none");
+const useConsoleKeyEnter = ():[string, string[], string[]] => {
+  // 今のドレミ
   const [noteStr, setNoteStr] = useState<string>("");
+  // 今のABC
   const [noteABCStr, setNoteABCStr] = useState<string>("");
+  // 今までのドレミを保持する配列
+  const [noteStrHist, setNoteStrHist] = useState<string[]>([]);
+  // 今までのABCを保持する配列
+  const [noteABCStrHist, setNoteABCStrHist] = useState<string[]>([]);
+
   var tmpNoteStr = ""
   var tmpNoteABCStr = ""
   var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi"]
@@ -43,26 +45,46 @@ const ConsoleKeyEnter: React.FC = () => {
       if (keyCode === enter) {
         var pointer = 0
         while (pointer+1 < tmpNoteStr.length) {
-            if (tmpNoteStr[pointer] === " ") {
+            var oneNote = tmpNoteStr.substr(pointer, 2)
+            if (oneNote === "sh" || oneNote[0] === "#") {
+                oneNote += tmpNoteStr[pointer+2]
+                pointer += 3
+            } else {
+                pointer += 2
+            }
+            console.log(oneNote)
+            if (noteTypeArray.includes(oneNote)) {
+                tmpNoteABCStr += toABC(oneNote)
+                // setNoteABCStr(tmpNoteABCStr)
+            }
+        }
+        // ドレミとABCを配列に入れる
+        setNoteStrHist(prev => [...prev, tmpNoteStr])
+        setNoteABCStrHist(prev => [...prev, tmpNoteABCStr])
+
+        // 音鳴らすための処理
+        pointer = 0
+        while (pointer+1 < tmpNoteStr.length) {
+            if (tmpNoteStr[pointer] === " ") { // todo:これ多分無理
                 sleep(duration/1000)
             } else {
-                var oneNote = tmpNoteStr.substr(pointer, 2)
+                oneNote = tmpNoteStr.substr(pointer, 2)
                 if (oneNote === "sh" || oneNote[0] === "#") {
                     oneNote += tmpNoteStr[pointer+2]
                     pointer += 3
                 } else {
                     pointer += 2
                 }
-                console.log(oneNote)
                 if (noteTypeArray.includes(oneNote)) {
-                    tmpNoteABCStr += toABC(oneNote)
-                    setNoteABCStr(tmpNoteABCStr)
                     playNote(oneNote)
                     await wait(1) // todo:今は1秒やけど音の長さにする
                 }
             }
         }
         tmpNoteStr = ""
+        setNoteStr(tmpNoteStr)
+        tmpNoteABCStr = ""
+        setNoteABCStr(tmpNoteABCStr)
       } else if (keyCode === d) {
         tmpNoteStr += "d"
         setNoteStr(tmpNoteStr)
@@ -108,9 +130,9 @@ const ConsoleKeyEnter: React.FC = () => {
     return () => {
       document.removeEventListener("keydown", setFromNone);
     };
-  }, [noteABCStr]);
+  }, [noteStrHist, noteABCStrHist]);
 
-  return <div>{noteStr}</div>;
+  return [noteStr, noteStrHist, noteABCStrHist];
 };
 
-export default ConsoleKeyEnter;
+export default useConsoleKeyEnter;
