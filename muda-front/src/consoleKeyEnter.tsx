@@ -19,7 +19,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
   var tmpNoteStr = "";
   var tmpNoteABCStr = "";
-  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra"];
+  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra", " "];
 
   const wait = (sec: any) => {
     return new Promise((resolve, reject) => {
@@ -48,6 +48,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           if (oneNote === "sh" || oneNote[0] === "#") {
             oneNote += tmpNoteStr[pointer + 2];
             pointer += 3;
+          } else if (oneNote[0] === " ") {
+            pointer += 1;
+            oneNote = " "
           } else {
             pointer += 2;
           }
@@ -85,19 +88,25 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           } else {
             oneNote = tmpNoteStr.substr(pointer, 2);
             if (oneNote === "sh" || oneNote[0] === "#") {
-              oneNote += tmpNoteStr[pointer + 2];
-              pointer += 3;
-            } else {
-              pointer += 2;
+                oneNote += tmpNoteStr[pointer + 2];
+                pointer += 3;
+            } else if (oneNote[0] === " ") {
+                pointer += 1;
+                oneNote = " "
+              } else {
+                pointer += 2;
             }
             if (noteTypeArray.includes(oneNote)) {
-              playNote(oneNote,octaveCounter,1);
-              octaveCounter = 0;
-              await wait(1); // todo:今は1秒やけど音の長さにする
-            } else {
+                if (oneNote === " ") {
+                    await wait(60/bpm/2);
+                } else {
+                    playNote(oneNote,0,60/bpm)
+                    octaveCounter = 0;
+                    await wait(60/bpm);
+                }
+            } else { // ミスタイプのとき
                 pointer -= 1
             }
-          }
         }
         tmpNoteStr = "";
         tmpNoteABCStr = "";

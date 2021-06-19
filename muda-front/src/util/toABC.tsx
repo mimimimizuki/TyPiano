@@ -25,6 +25,8 @@ function toABC(beforeNote: string,counter:number) {
     afterNote += "^A";
   } else if (beforeNote === "shi") {
     afterNote += "B";
+  } else if (beforeNote === " ") {
+    afterNote += "z";
   }
   if (counter == 1){
     afterNote = afterNote.toLowerCase();
