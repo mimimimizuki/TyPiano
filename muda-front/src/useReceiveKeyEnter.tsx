@@ -143,7 +143,6 @@ const useReceiveKeyEnter = (): [note,number] => {
       document.removeEventListener("keydown", setFromNone);
     };
   }, [receivedKey]);
-  console.log(nowCounter)
   return [note, nowCounter];
 };
 

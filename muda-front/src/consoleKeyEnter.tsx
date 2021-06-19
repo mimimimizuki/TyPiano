@@ -38,9 +38,11 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           if (tmpNoteStr[pointer] === ",") {
             octaveCounter -= 1;
             pointer += 1;
+            continue;
           } else if (tmpNoteStr[pointer] === ".") {
             octaveCounter += 1;
             pointer += 1;
+            continue;
           }
           var oneNote = tmpNoteStr.substr(pointer, 2);
           if (oneNote === "sh" || oneNote[0] === "#") {
@@ -49,9 +51,10 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           } else {
             pointer += 2;
           }
-          console.log(oneNote);
           if (noteTypeArray.includes(oneNote)) {
+            console.log(octaveCounter)
             tmpNoteABCStr += toABC(oneNote, octaveCounter);
+            octaveCounter = 0;
             // setNoteABCStr(tmpNoteABCStr)
           } else {
             pointer -= 1
@@ -74,9 +77,11 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           } else if (tmpNoteStr[pointer] === ",") {
             octaveCounter -= 1;
             pointer += 1;
+            continue;
           } else if (tmpNoteStr[pointer] === ".") {
             octaveCounter += 1;
             pointer += 1;
+            continue;
           } else {
             oneNote = tmpNoteStr.substr(pointer, 2);
             if (oneNote === "sh" || oneNote[0] === "#") {

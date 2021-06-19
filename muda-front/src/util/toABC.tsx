@@ -27,10 +27,14 @@ function toABC(beforeNote: string,counter:number) {
     afterNote += "B";
   }
   if (counter == 1){
-    console.log("here")
     afterNote = afterNote.toLowerCase();
+  } else if (counter > 1){
+    afterNote = afterNote.toLowerCase();
+    afterNote += "\'".repeat(counter);
+  } else if (counter < 0){
+    afterNote += ",".repeat(-counter);
   }
-  console.log(afterNote)
+
     return afterNote
 }
 
