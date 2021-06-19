@@ -19,7 +19,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
   var tmpNoteStr = "";
   var tmpNoteABCStr = "";
-  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi"];
+  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra"];
 
   const wait = (sec: any) => {
     return new Promise((resolve, reject) => {
