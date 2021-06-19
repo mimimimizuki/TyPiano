@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import playNote from "./util/playNote";
 import toABC from "./util/toABC";
-import sleep from "./util/sleep";
 import * as keyCodeList from "./common/keyCode";
-
-const bpm = 120;
-const duration = 60000 / bpm / 2;
+import * as noteConfig from "./common/noteConfig"
 
 const useConsoleKeyEnter = (): [string, string[], string[]] => {
   // 今のドレミ
@@ -82,7 +79,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             octaveCounter += 1;
             pointer += 1;
             continue;
-        　} 
+        　}
           oneNote = tmpNoteStr.substr(pointer, 2);
           if (oneNote === "sh" || oneNote[0] === "#") {
               oneNote += tmpNoteStr[pointer + 2];
@@ -95,11 +92,11 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           }
           if (noteTypeArray.includes(oneNote)) {
               if (oneNote === " ") {
-                  await wait(60/bpm/2);
+                  await wait(noteConfig.restLength);
               } else {
-                  playNote(oneNote,octaveCounter,60/bpm)
+                  playNote(oneNote,octaveCounter,noteConfig.noteLength)
                   octaveCounter = 0;
-                  await wait(60/bpm);
+                  await wait(noteConfig.noteLength);
               }
           } else { // ミスタイプのとき
               pointer -= 1

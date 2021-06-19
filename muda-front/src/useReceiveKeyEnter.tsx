@@ -10,7 +10,7 @@ const useReceiveKeyEnter = (): [note,number] => {
   const [note, setNote] = useState<note>("none");
   const [counter, setCounter] = useState<number>(0);
   const [nowCounter, setNowCounter] = useState(0);
-  
+
   const sharp = 51;
   const downOctave = 188;
   const upOctave = 190;
