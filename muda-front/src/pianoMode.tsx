@@ -68,9 +68,16 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   const list = [];
 
   // どこから有効キーにするか
-  const playStartIndex = Math.floor(keyNum / 7 / 2) * 7;
+  var playStartIndex = Math.floor(keyNum / 7 / 2) * 7; 
   // どこまで有効キーにするか
-  const playEndIndex = playStartIndex + 7;
+  var playEndIndex = playStartIndex + 7;
+  if (counter > 0){
+    playStartIndex += 7;
+    playEndIndex += 7;
+  } else if (counter < 0) {
+    playStartIndex -=  7;
+    playEndIndex -= 7;
+  } 
 
   //鍵盤作成
   for (let index = 0; index < keyNum; index++) {
