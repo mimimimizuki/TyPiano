@@ -33,7 +33,17 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       const keyCode = event.keyCode;
       if (keyCode === keyCodeList.enter_code) {
         var pointer = 0;
+        var octaveCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
+          if (tmpNoteStr[pointer] === ",") {
+            octaveCounter -= 1;
+            pointer += 1;
+            continue;
+          } else if (tmpNoteStr[pointer] === ".") {
+            octaveCounter += 1;
+            pointer += 1;
+            continue;
+          }
           var oneNote = tmpNoteStr.substr(pointer, 2);
           if (oneNote === "sh" || oneNote[0] === "#") {
             oneNote += tmpNoteStr[pointer + 2];
@@ -44,9 +54,10 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           } else {
             pointer += 2;
           }
-          console.log(oneNote);
           if (noteTypeArray.includes(oneNote)) {
-            tmpNoteABCStr += toABC(oneNote, 0);
+            console.log(octaveCounter)
+            tmpNoteABCStr += toABC(oneNote, octaveCounter);
+            octaveCounter = 0;
             // setNoteABCStr(tmpNoteABCStr)
           } else {
             pointer -= 1
@@ -61,7 +72,20 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
         // 音鳴らすための処理
         pointer = 0;
+        octaveCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
+          if (tmpNoteStr[pointer] === " ") {
+            // todo:これ多分無理
+            sleep(duration / 1000);
+          } else if (tmpNoteStr[pointer] === ",") {
+            octaveCounter -= 1;
+            pointer += 1;
+            continue;
+          } else if (tmpNoteStr[pointer] === ".") {
+            octaveCounter += 1;
+            pointer += 1;
+            continue;
+          } else {
             oneNote = tmpNoteStr.substr(pointer, 2);
             if (oneNote === "sh" || oneNote[0] === "#") {
                 oneNote += tmpNoteStr[pointer + 2];
@@ -77,7 +101,8 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
                     await wait(60/bpm/2);
                 } else {
                     playNote(oneNote,0,60/bpm)
-                    await wait(60/bpm); // todo:今は1秒やけど音の長さにする
+                    octaveCounter = 0;
+                    await wait(60/bpm);
                 }
             } else { // ミスタイプのとき
                 pointer -= 1
@@ -117,6 +142,12 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
         setNoteStr(tmpNoteStr);
       } else if (keyCode === keyCodeList.sharp_code) {
         tmpNoteStr += "#";
+        setNoteStr(tmpNoteStr);
+      } else if (keyCode === keyCodeList.upOctave_code) {
+        tmpNoteStr += ".";
+        setNoteStr(tmpNoteStr);
+      } else if (keyCode === keyCodeList.downOctave_code) {
+        tmpNoteStr += ",";
         setNoteStr(tmpNoteStr);
       } else if (keyCode === keyCodeList.space_code) {
         tmpNoteStr += " ";
