@@ -57,6 +57,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             tmpNoteABCStr += toABC(oneNote, 0);
             // setNoteABCStr(tmpNoteABCStr)
           }
+          else{
+            pointer -= 1;
+          }
         }
         // ドレミとABCを配列に入れる
         setNoteStrHist((prev) => [...prev, tmpNoteStr]);
@@ -82,6 +85,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             if (noteTypeArray.includes(oneNote)) {
               playNote(oneNote,0,1)
               await wait(1); // todo:今は1秒やけど音の長さにする
+            }
+            else {
+              pointer -= 1;
             }
           }
         }
