@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import playNote from "./until/playNote";
-import toABC from "./until/toABC";
-import sleep from "./until/sleep";
+import playNote from "./util/playNote";
+import toABC from "./util/toABC";
+import sleep from "./util/sleep";
+import * as keyCodeList from "./common/keyCode";
 
 const bpm = 120;
 const duration = 60000 / bpm / 2;
@@ -18,19 +19,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
   var tmpNoteStr = "";
   var tmpNoteABCStr = "";
-  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi"];
-
-  const d = 68;
-  const o = 79;
-  const r = 82;
-  const e = 69;
-  const m = 77;
-  const i = 73;
-  const f = 70;
-  const a = 65;
-  const s = 83;
-  const h = 72;
-  const enter = 13;
+  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra"];
 
   const wait = (sec: any) => {
     return new Promise((resolve, reject) => {
@@ -42,7 +31,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
   useEffect(() => {
     async function setFromNone(event: { keyCode: number | Number }) {
       const keyCode = event.keyCode;
-      if (keyCode === enter) {
+      if (keyCode === keyCodeList.enter_code) {
         var pointer = 0;
         while (pointer + 1 < tmpNoteStr.length) {
           var oneNote = tmpNoteStr.substr(pointer, 2);
@@ -56,9 +45,8 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           if (noteTypeArray.includes(oneNote)) {
             tmpNoteABCStr += toABC(oneNote, 0);
             // setNoteABCStr(tmpNoteABCStr)
-          }
-          else{
-            pointer -= 1;
+          } else {
+            pointer -= 1
           }
         }
         // ドレミとABCを配列に入れる
@@ -85,49 +73,45 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             if (noteTypeArray.includes(oneNote)) {
               playNote(oneNote,0,1)
               await wait(1); // todo:今は1秒やけど音の長さにする
-            }
-            else {
-              pointer -= 1;
+            } else {
+                pointer -= 1
             }
           }
         }
         tmpNoteStr = "";
         tmpNoteABCStr = "";
-      } else if (keyCode === d) {
+      } else if (keyCode === keyCodeList.d_code) {
         tmpNoteStr += "d";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === r) {
+      } else if (keyCode === keyCodeList.r_code) {
         tmpNoteStr += "r";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === m) {
+      } else if (keyCode === keyCodeList.m_code) {
         tmpNoteStr += "m";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === f) {
+      } else if (keyCode === keyCodeList.f_code) {
         tmpNoteStr += "f";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === s) {
+      } else if (keyCode === keyCodeList.s_code) {
         tmpNoteStr += "s";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === h) {
+      } else if (keyCode === keyCodeList.h_code) {
         tmpNoteStr += "h";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === o) {
+      } else if (keyCode === keyCodeList.o_code) {
         tmpNoteStr += "o";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === o) {
-        tmpNoteStr += "o";
-        setNoteStr(tmpNoteStr);
-      } else if (keyCode === e) {
+      } else if (keyCode === keyCodeList.e_code) {
         tmpNoteStr += "e";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === i) {
+      } else if (keyCode === keyCodeList.i_code) {
         tmpNoteStr += "i";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === i) {
-        tmpNoteStr += "i";
-        setNoteStr(tmpNoteStr);
-      } else if (keyCode === a) {
+      } else if (keyCode === keyCodeList.a_code) {
         tmpNoteStr += "a";
+        setNoteStr(tmpNoteStr);
+      } else if (keyCode === keyCodeList.sharp_code) {
+        tmpNoteStr += "#";
         setNoteStr(tmpNoteStr);
       } else {
         // setReceivedKey("none");
