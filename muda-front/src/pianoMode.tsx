@@ -221,9 +221,9 @@ export const PianoBase: React.FC<{ inPiano: boolean }> = ({ inPiano }) => {
       <div
         style={{
           display: "flex",
-          transform: "scaleY(0.1)",
+          transform: "scaleY(0.2)",
           position: "fixed" as "fixed",
-          bottom: -135,
+          bottom: -121,
           zIndex: -1,
         }}
       >
@@ -238,8 +238,10 @@ export const PianoBase: React.FC<{ inPiano: boolean }> = ({ inPiano }) => {
             marginBottom: 7,
             paddingLeft: 20,
             paddingRight: 20,
+            paddingTop: 10,
+            paddingBottom: 10,
             backgroundColor: "#FFFFFF",
-            boxShadow: "0 0 5px 5px white",
+            boxShadow: "0 0 10px 10px white",
           }}
         >
           ピアノモードへ
