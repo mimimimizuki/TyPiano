@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App" onClick={handleClick}>
       {!finShowPiano && <ConsoleMode doRemove={!showConsole} />}
-      <ConsoleTab />
+      <ConsoleTab inConsole={finShowConsole} />
       {!finShowConsole && <PianoMode doRemove={!showPiano} />}
       <PianoBase />
     </div>

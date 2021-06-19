@@ -78,8 +78,8 @@ export const ConsoleMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   );
 };
 
-export const ConsoleTab: React.FC = () => {
-  return <div style={consoleBase}>コンソールモードへ</div>;
+export const ConsoleTab: React.FC<{ inConsole: boolean }> = ({ inConsole }) => {
+  return <div style={consoleBase}>{!inConsole && "コンソールモードへ"}</div>;
 };
 
 export default ConsoleMode;
