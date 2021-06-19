@@ -74,18 +74,15 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
         pointer = 0;
         octaveCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
-          if (tmpNoteStr[pointer] === " ") {
-            // todo:これ多分無理
-            sleep(duration / 1000);
-          } else if (tmpNoteStr[pointer] === ",") {
+        　if (tmpNoteStr[pointer] === ",") {
             octaveCounter -= 1;
             pointer += 1;
             continue;
-          } else if (tmpNoteStr[pointer] === ".") {
+        　} else if (tmpNoteStr[pointer] === ".") {
             octaveCounter += 1;
             pointer += 1;
             continue;
-          } else {
+        　} else {
             oneNote = tmpNoteStr.substr(pointer, 2);
             if (oneNote === "sh" || oneNote[0] === "#") {
                 oneNote += tmpNoteStr[pointer + 2];
@@ -107,6 +104,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             } else { // ミスタイプのとき
                 pointer -= 1
             }
+        　}
         }
         tmpNoteStr = "";
         tmpNoteABCStr = "";
