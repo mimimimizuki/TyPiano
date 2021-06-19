@@ -80,7 +80,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
               pointer += 2;
             }
             if (noteTypeArray.includes(oneNote)) {
-              playNote(oneNote);
+              playNote(oneNote,0,1)
               await wait(1); // todo:今は1秒やけど音の長さにする
             }
           }

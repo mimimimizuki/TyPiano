@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useReceiveKeyEnter from "./useReceiveKeyEnter";
 import { useWindowDimensions } from "./useWindowDimentions";
 import abcjs from "abcjs";
+import toABC from "./until/toABC";
 
 const keyStyles = {
   height: 300,
@@ -43,7 +44,7 @@ const PianoMode: React.FC = () => {
 
   const windowDimensions = useWindowDimensions();
   const keyNum = windowDimensions.width / 64;
-  const tone = useReceiveKeyEnter();
+  const [tone,counter] = useReceiveKeyEnter();
 
   const list = [];
 
@@ -60,13 +61,13 @@ const PianoMode: React.FC = () => {
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "do" : false} />
         );
-        list.push(<BlackKey key={index + 0.5}　　nowplay={tone === "#do"} />);
+        list.push(<BlackKey key={index + 0.5}　　nowplay={playable ? tone === "#do" : false} />);
         break;
       case 1:
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "re" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#re"}　/>);
+        list.push(<BlackKey key={index + 0.5} nowplay={playable ? tone === "#re" : false}　/>);
         break;
       case 2:
         list.push(
@@ -77,19 +78,19 @@ const PianoMode: React.FC = () => {
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "fa" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#fa"} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={playable ? tone === "#fa" : false} />);
         break;
       case 4:
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "so" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#so"} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={playable ? tone === "#so" : false} />);
         break;
       case 5:
         list.push(
           <WhiteKey key={index} nowplay={playable ? tone === "ra" : false} />
         );
-        list.push(<BlackKey key={index + 0.5} nowplay={tone === "#ra"} />);
+        list.push(<BlackKey key={index + 0.5} nowplay={playable ? tone === "#ra" : false} />);
         break;
       case 6:
         list.push(
@@ -102,22 +103,8 @@ const PianoMode: React.FC = () => {
   }
 
   useEffect(() => {
-    var addTone = "";
-    if (tone === "do") {
-      addTone = "C";
-    } else if (tone === "re") {
-      addTone = "D";
-    } else if (tone === "mi") {
-      addTone = "E";
-    } else if (tone === "fa") {
-      addTone = "F";
-    } else if (tone === "so") {
-      addTone = "G";
-    } else if (tone === "ra") {
-      addTone = "A";
-    } else if (tone === "shi") {
-      addTone = "B";
-    }
+    var addTone = toABC(tone, counter);
+    
     setNoteList((prevNoteList) => prevNoteList + addTone);
   }, [tone]);
   abcjs.renderAbc("abc", noteList);
