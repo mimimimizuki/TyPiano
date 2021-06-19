@@ -82,29 +82,28 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             octaveCounter += 1;
             pointer += 1;
             continue;
-        　} else {
-            oneNote = tmpNoteStr.substr(pointer, 2);
-            if (oneNote === "sh" || oneNote[0] === "#") {
-                oneNote += tmpNoteStr[pointer + 2];
-                pointer += 3;
-            } else if (oneNote[0] === " ") {
-                pointer += 1;
-                oneNote = " "
+        　} 
+          oneNote = tmpNoteStr.substr(pointer, 2);
+          if (oneNote === "sh" || oneNote[0] === "#") {
+              oneNote += tmpNoteStr[pointer + 2];
+              pointer += 3;
+          } else if (oneNote[0] === " ") {
+              pointer += 1;
+              oneNote = " "
+            } else {
+              pointer += 2;
+          }
+          if (noteTypeArray.includes(oneNote)) {
+              if (oneNote === " ") {
+                  await wait(60/bpm/2);
               } else {
-                pointer += 2;
-            }
-            if (noteTypeArray.includes(oneNote)) {
-                if (oneNote === " ") {
-                    await wait(60/bpm/2);
-                } else {
-                    playNote(oneNote,0,60/bpm)
-                    octaveCounter = 0;
-                    await wait(60/bpm);
-                }
-            } else { // ミスタイプのとき
-                pointer -= 1
-            }
-        　}
+                  playNote(oneNote,octaveCounter,60/bpm)
+                  octaveCounter = 0;
+                  await wait(60/bpm);
+              }
+          } else { // ミスタイプのとき
+              pointer -= 1
+          }
         }
         tmpNoteStr = "";
         tmpNoteABCStr = "";
