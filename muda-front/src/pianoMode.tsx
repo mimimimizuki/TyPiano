@@ -179,7 +179,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   );
 };
 
-export const PianoBase: React.FC = () => {
+export const PianoBase: React.FC<{ inPiano: boolean }> = ({ inPiano }) => {
   const windowDimensions = useWindowDimensions();
   const keyNum = windowDimensions.width / 64;
 
@@ -217,16 +217,34 @@ export const PianoBase: React.FC = () => {
     }
   }
   return (
-    <div
-      style={{
-        display: "flex",
-        transform: "scaleY(0.1)",
-        position: "fixed" as "fixed",
-        bottom: -135,
-        zIndex: -1,
-      }}
-    >
-      {list}
+    <div>
+      <div
+        style={{
+          display: "flex",
+          transform: "scaleY(0.1)",
+          position: "fixed" as "fixed",
+          bottom: -135,
+          zIndex: -1,
+        }}
+      >
+        {list}
+      </div>
+      {!inPiano && (
+        <div
+          style={{
+            position: "fixed" as "fixed",
+            bottom: 0,
+            marginLeft: 20,
+            marginBottom: 7,
+            paddingLeft: 20,
+            paddingRight: 20,
+            backgroundColor: "#FFFFFF",
+            boxShadow: "0 0 5px 5px white",
+          }}
+        >
+          ピアノモードへ
+        </div>
+      )}
     </div>
   );
 };

@@ -37,7 +37,7 @@ function App() {
       {!finShowPiano && <ConsoleMode doRemove={!showConsole} />}
       <ConsoleTab inConsole={finShowConsole} />
       {!finShowConsole && <PianoMode doRemove={!showPiano} />}
-      <PianoBase />
+      <PianoBase inPiano={finShowPiano} />
     </div>
   );
 }
