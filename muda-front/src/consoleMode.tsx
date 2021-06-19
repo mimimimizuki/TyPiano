@@ -1,7 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import abcjs from "abcjs";
 import useConsoleKeyEnter from "./consoleKeyEnter";
 import "./slide.css";
+import "./flash.css";
 
 const consoleBase = {
   backgroundColor: "#041344",
@@ -28,6 +29,12 @@ const consoleOut = {
   animationFillMode: "forwards",
 };
 
+const flash = {
+  animationName: "flash",
+  animationDuration: "1s",
+  animationIterationCount: "infinite",
+};
+
 const ConsoleBlock: React.FC<{ command: string; abc: string; i: number }> = ({
   command,
   abc,
@@ -40,7 +47,9 @@ const ConsoleBlock: React.FC<{ command: string; abc: string; i: number }> = ({
 
   return (
     <div>
-      <p key={commandId}>$ {command}</p>
+      <p key={commandId}>
+        <span style={{ color: "#09f80d" }}>[admin@typiano]$</span> {command}
+      </p>
       <div id={scoreId} key={scoreId}></div>
     </div>
   );
@@ -50,7 +59,10 @@ export const ConsoleMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   // [["doremi", "remifa"], ["CDE", "EFG"], "dor"のイメージ
   const [nowString, commandHist, ABCHist] = useConsoleKeyEnter();
 
+  const scrollBottomRef = useRef<HTMLDivElement>(null);
+
   // 画面に表示するもの
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const list: ReactElement[] = [];
 
   // 今までの履歴をデザインに変えている
@@ -67,12 +79,21 @@ export const ConsoleMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
       ></ConsoleBlock>
     );
   }
+
+  useEffect(() => {
+    scrollBottomRef?.current?.scrollIntoView(false);
+  }, [list]);
+
   // 履歴と、一番下に今のやつを表示
   return (
     <div>
       <div key="c" style={doRemove ? consoleOut : consoleOn}>
         {list}
-        <p id="command">$ {nowString}</p>
+        <p>
+          <span style={{ color: "#09f80d" }}>[admin@typiano]$</span> {nowString}
+          <span style={flash}>|</span>
+        </p>
+        <div ref={scrollBottomRef}></div>
       </div>
     </div>
   );
