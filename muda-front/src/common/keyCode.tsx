@@ -11,4 +11,5 @@ export const h_code = 72;
 export const enter_code = 13;
 export const sharp_code = 51;
 export const upOctave_code = 190;
-export const dpwnOctave_code = 188;
+export const downOctave_code = 188;
+export const space_code = 32;
