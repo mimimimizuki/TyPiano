@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import playNote from "./util/playNote";
 import toABC from "./util/toABC";
-import sleep from "./util/sleep";
 import * as keyCodeList from "./common/keyCode";
-
-const bpm = 64;
-const duration = 60000 / bpm / 2;
+import * as noteConfig from "./common/noteConfig"
 
 const useConsoleKeyEnter = (): [string, string[], string[]] => {
   // 今のドレミ
@@ -112,9 +109,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           }
           if (noteTypeArray.includes(oneNote)) {
               if (oneNote === " ") {
-                  await wait(60/bpm/2);
+                  await wait(noteConfig.restLength);
               } else {
-                  var beep_time = 60/(bpm*4);
+                  var beep_time = noteConfig.noteLength;
                   if (lengthCounter > 0) {
                     beep_time = beep_time * (2*lengthCounter);
                   } else if (lengthCounter < 0) {
