@@ -146,6 +146,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       } else if (keyCode === keyCodeList.space_code) {
         tmpNoteStr += " ";
         setNoteStr(tmpNoteStr);
+      } else if (keyCode === keyCodeList.backspace_code || keyCode === keyCodeList.delete_code) {
+        tmpNoteStr = tmpNoteStr.substring(0, tmpNoteStr.length-1);
+        setNoteStr(tmpNoteStr);
       } else {
         // setReceivedKey("none");
       }
