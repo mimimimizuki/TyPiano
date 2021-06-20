@@ -172,7 +172,41 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
 
   return (
     <div style={doRemove ? keyShort : keyLong}>
-      <div id="abc"></div>
+      <div className="score-stand" style={{ position: "relative" }}>
+        <div
+          className="score-wrapper"
+          style={{
+            position: "absolute",
+            top: -60,
+            left: "10%",
+            width: "80%",
+            height: 200,
+            padding: 10,
+            border: "1px solid black",
+            backgroundColor: "white",
+          }}
+        >
+          <div
+            id="abc"
+            style={{
+              margin: "30px 0",
+            }}
+          ></div>
+        </div>
+        <div
+          style={{
+            backgroundColor: "black",
+            marginLeft: "5%",
+            width: "90%",
+            height: 120,
+            zIndex: -1,
+          }}
+        ></div>
+      </div>
+
+      <div
+        style={{ backgroundColor: "black", height: 100, width: "100%" }}
+      ></div>
       <div style={{ display: "flex" }}>{list}</div>
     </div>
   );
