@@ -12,7 +12,10 @@ const headerStyles = {
   padding: 10,
 };
 
-const Header: React.FC<{ toTop: () => void }> = ({ toTop }) => {
+const Header: React.FC<{ toTop: () => void; openModal: () => void }> = ({
+  toTop,
+  openModal,
+}) => {
   return (
     <div style={headerStyles}>
       <img
@@ -24,6 +27,24 @@ const Header: React.FC<{ toTop: () => void }> = ({ toTop }) => {
       <span style={{ cursor: "pointer" }} onClick={toTop}>
         TyPiano
       </span>
+
+      <div
+        style={{
+          width: 30,
+          height: 30,
+          padding: 5,
+          marginLeft: "auto",
+          marginRight: 30,
+          border: "1px solid black",
+          borderRadius: "50%",
+          textAlign: "center",
+          cursor: "pointer",
+          fontFamily: "Noto Sans JP, sans-serif",
+        }}
+        onClick={openModal}
+      >
+        ？
+      </div>
     </div>
   );
 };
