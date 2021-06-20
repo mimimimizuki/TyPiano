@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
 
-.iota .btn {
+.btn {
   margin: 6px;
   width: 13em;
   font-size: 30px;
@@ -15,11 +15,17 @@
   transition: background-color 0.3s, color 0.3s;
   font-family: "M PLUS Rounded 1c", sans-serif;
 }
-.iota .btn:hover {
+.btn.dark {
+  background-color: #d8d8d8;
+}
+.btn.dark:hover {
+  background-color: gray;
+}
+.btn:hover {
   background-color: #dff7df;
   transform: scale(1.02);
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.iota .btn:active {
+.btn:active {
   color: black;
 }
