@@ -1,6 +1,7 @@
 import React from "react";
 import "./button.css";
 import "./Top.css";
+import topImage from '../src/typiano-top.png';
 
 const headerPictureStyles = {
   position: "absolute" as "absolute",
@@ -8,7 +9,7 @@ const headerPictureStyles = {
   top: 0,
   width: "100%",
   height: "100%",
-  backgroundImage: `url(/typiano-top.png)`,
+  backgroundImage: `url(${topImage})`,
   backgroundSize: "cover",
 };
 const headerStyles = {
