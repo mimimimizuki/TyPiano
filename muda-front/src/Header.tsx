@@ -1,4 +1,6 @@
+import { url } from "inspector";
 import React from "react";
+import iconImage from "../src/icon.png";
 
 const headerStyles = {
   display: "flex",
@@ -19,7 +21,7 @@ const Header: React.FC<{ toTop: () => void; openModal: () => void }> = ({
   return (
     <div style={headerStyles}>
       <img
-        src="/icon.png"
+        src={iconImage}
         alt=""
         style={{ height: 35, cursor: "pointer" }}
         onClick={toTop}
