@@ -1,15 +1,30 @@
 import React from "react";
+import "./button.css";
+import "./Top.css";
+import topImage from '../src/typiano-top.png';
 
-const headerStyles = {
+const headerPictureStyles = {
   position: "absolute" as "absolute",
   left: 0,
   top: 0,
   width: "100%",
   height: "100%",
-  backgroundColor: "#ADF7AE",
-  color: "#243324",
-  fontFamily: "Source Code Pro, monospace",
-  fontSize: 22,
+  backgroundImage: `url(${topImage})`,
+  backgroundSize: "cover",
+};
+const headerStyles = {
+  display: "flex",
+  flexDirection: "column" as "column",
+  justifyContent: "center",
+  position: "absolute" as "absolute",
+  left: 0,
+  top: 0,
+  width: "100%",
+  height: "100%",
+  background: "rgba(0,0,0, 0.2)",
+  color: "#FFFFFF",
+  fontFamily: "Alex Brush, cursive",
+  fontSize: 66,
   zIndex: 5,
   varticalAlign: "center",
   textAlign: "center" as "center",
@@ -20,11 +35,17 @@ const Top: React.FC<{ piano: () => void; console: () => void }> = ({
   console,
 }) => {
   return (
-    <div style={headerStyles}>
-      TyPiano
-      <div>
-        <button onClick={() => console()}>コンソールモード</button>
-        <button onClick={() => piano()}>ピアノモード</button>
+    <div style={headerPictureStyles}>
+      <div style={headerStyles}>
+        <h1>TyPiano</h1>
+        <div className="iota">
+          <button className="btn" onClick={() => console()}>
+            <span>コンソールモード</span>
+          </button>
+          <button className="btn" onClick={() => piano()}>
+            ピアノモード
+          </button>
+        </div>
       </div>
     </div>
   );
