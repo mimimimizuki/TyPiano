@@ -4,9 +4,11 @@ import Header from "./Header";
 import ConsoleMode, { ConsoleTab } from "./consoleMode";
 import PianoMode, { PianoBase } from "./pianoMode";
 import Top from "./Top";
+import ExplainModal from "./ExplainModal";
 
 function App() {
   const [showMain, setShowMain] = useState<boolean>(false);
+  const [showModal, setOpenModal] = useState<boolean>(false);
   const [showConsole, setShowConsole] = useState<boolean>(true);
   const [finShowConsole, setFinShowConsole] = useState<boolean>(false);
   const [showPiano, setShowPiano] = useState<boolean>(true);
@@ -47,10 +49,21 @@ function App() {
       toConsole();
     }
   }
+  function closeModal() {
+    setOpenModal(false);
+  }
+
+  function openModal() {
+    setOpenModal(true);
+  }
   return (
     <div className="App">
-      {!showMain && <Top piano={toPiano} console={toConsole} />}
-      {showMain && <Header toTop={toTop} />}
+      <ExplainModal isOpen={showModal} toClose={closeModal} />
+
+      {!showMain && (
+        <Top piano={toPiano} console={toConsole} openModal={openModal} />
+      )}
+      {showMain && <Header toTop={toTop} openModal={openModal} />}
       {showMain && (
         <div onClick={handleClick}>
           {!finShowPiano && <ConsoleMode doRemove={!showConsole} />}

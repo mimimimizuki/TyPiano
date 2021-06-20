@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.css";
 import "./Top.css";
-import topImage from '../src/typiano-top.png';
+import topImage from "../src/typiano-top.png";
 
 const headerPictureStyles = {
   position: "absolute" as "absolute",
@@ -25,26 +25,31 @@ const headerStyles = {
   color: "#FFFFFF",
   fontFamily: "Alex Brush, cursive",
   fontSize: 66,
-  zIndex: 5,
   varticalAlign: "center",
   textAlign: "center" as "center",
 };
 
-const Top: React.FC<{ piano: () => void; console: () => void }> = ({
-  piano,
-  console,
-}) => {
+const Top: React.FC<{
+  piano: () => void;
+  console: () => void;
+  openModal: () => void;
+}> = ({ piano, console, openModal }) => {
   return (
     <div style={headerPictureStyles}>
       <div style={headerStyles}>
         <h1>TyPiano</h1>
         <div className="iota">
-          <button className="btn" onClick={() => console()}>
-            <span>コンソールモード</span>
+          <button className="btn" onClick={() => openModal()}>
+            <span>使い方</span>
           </button>
-          <button className="btn" onClick={() => piano()}>
-            ピアノモード
-          </button>
+          <div style={{ marginTop: 50 }}>
+            <button className="btn" onClick={() => console()}>
+              <span>コンソールモード</span>
+            </button>
+            <button className="btn" onClick={() => piano()}>
+              ピアノモード
+            </button>
+          </div>
         </div>
       </div>
     </div>
