@@ -12,6 +12,10 @@ function App() {
   const [showPiano, setShowPiano] = useState<boolean>(true);
   const [finShowPiano, setFinShowPiano] = useState<boolean>(false);
 
+  function toTop() {
+    setShowMain(false);
+  }
+
   function toConsole() {
     setShowMain(true);
     // コンソールを広げる
@@ -46,7 +50,7 @@ function App() {
   return (
     <div className="App">
       {!showMain && <Top piano={toPiano} console={toConsole} />}
-      {showMain && <Header />}
+      {showMain && <Header toTop={toTop} />}
       {showMain && (
         <div onClick={handleClick}>
           {!finShowPiano && <ConsoleMode doRemove={!showConsole} />}
