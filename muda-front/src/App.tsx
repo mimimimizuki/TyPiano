@@ -8,7 +8,7 @@ import ExplainModal from "./ExplainModal";
 
 function App() {
   const [showMain, setShowMain] = useState<boolean>(false);
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [showModal, setOpenModal] = useState<boolean>(false);
   const [showConsole, setShowConsole] = useState<boolean>(true);
   const [finShowConsole, setFinShowConsole] = useState<boolean>(false);
   const [showPiano, setShowPiano] = useState<boolean>(true);
@@ -53,17 +53,17 @@ function App() {
     setOpenModal(false);
   }
 
-  function oloseModal() {
+  function openModal() {
     setOpenModal(true);
   }
   return (
     <div className="App">
-      <ExplainModal isOpen={openModal} toClose={closeModal} />
+      <ExplainModal isOpen={showModal} toClose={closeModal} />
 
       {!showMain && (
-        <Top piano={toPiano} console={toConsole} openModal={oloseModal} />
+        <Top piano={toPiano} console={toConsole} openModal={openModal} />
       )}
-      {showMain && <Header toTop={toTop} />}
+      {showMain && <Header toTop={toTop} openModal={openModal} />}
       {showMain && (
         <div onClick={handleClick}>
           {!finShowPiano && <ConsoleMode doRemove={!showConsole} />}
