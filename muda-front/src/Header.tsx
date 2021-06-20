@@ -12,11 +12,18 @@ const headerStyles = {
   padding: 10,
 };
 
-const Header: React.FC = () => {
+const Header: React.FC<{ toTop: () => void }> = ({ toTop }) => {
   return (
     <div style={headerStyles}>
-      <img src="/icon.png" alt="" style={{ height: 35 }}></img>
-      <span>TyPiano</span>
+      <img
+        src="/icon.png"
+        alt=""
+        style={{ height: 35, cursor: "pointer" }}
+        onClick={toTop}
+      ></img>
+      <span style={{ cursor: "pointer" }} onClick={toTop}>
+        TyPiano
+      </span>
     </div>
   );
 };
