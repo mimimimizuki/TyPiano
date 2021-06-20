@@ -1,5 +1,6 @@
 import React from "react";
 import "./button.css";
+import "./Top.css";
 
 const headerPictureStyles = {
   position: "absolute" as "absolute",
@@ -21,7 +22,7 @@ const headerStyles = {
   height: "100%",
   background: "rgba(0,0,0, 0.2)",
   color: "#FFFFFF",
-  fontFamily: "Source Code Pro, monospace",
+  fontFamily: "Alex Brush, cursive",
   fontSize: 66,
   zIndex: 5,
   varticalAlign: "center",
@@ -35,7 +36,7 @@ const Top: React.FC<{ piano: () => void; console: () => void }> = ({
   return (
     <div style={headerPictureStyles}>
       <div style={headerStyles}>
-        TyPiano
+        <h1>TyPiano</h1>
         <div className="iota">
           <button className="btn" onClick={() => console()}>
             <span>コンソールモード</span>

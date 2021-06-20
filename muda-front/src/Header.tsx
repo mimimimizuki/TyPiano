@@ -4,7 +4,7 @@ const headerStyles = {
   width: "100%",
   backgroundColor: "#ADF7AE",
   color: "#243324",
-  fontFamily: "Source Code Pro, monospace",
+  fontFamily: "Alex Brush, cursive",
   fontSize: 22,
   padding: 10,
 };

@@ -2,6 +2,7 @@
 
 .iota .btn {
   margin: 6px;
+  width: 13em;
   font-size: 30px;
   line-height: 1.42;
   padding: 0.6em 1.6em;
@@ -18,4 +19,7 @@
   background-color: #dff7df;
   transform: scale(1.02);
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.iota .btn:active {
+  color: black;
 }
