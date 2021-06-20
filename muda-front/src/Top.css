@@ -1,0 +1,19 @@
+h1 {
+  display: inline-block;
+  position: relative;
+  margin-top: 0;
+}
+h1:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px; /*下線の上下位置調整*/
+  display: inline-block;
+  width: 2em; /*下線の幅*/
+  height: 2px; /*下線の太さ*/
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translate(-50%); /*位置調整*/
+  background-color: #ffffff; /*下線の色*/
+}

@@ -1,0 +1,17 @@
+export const d_code = 68;
+export const o_code = 79;
+export const e_code = 69;
+export const r_code = 82;
+export const m_code = 77;
+export const i_code = 73;
+export const f_code = 70;
+export const a_code = 65;
+export const s_code = 83;
+export const h_code = 72;
+export const enter_code = 13;
+export const sharp_code = 51;
+export const upOctave_code = 190;
+export const downOctave_code = 188;
+export const space_code = 32;
+export const backspace_code = 8;
+export const delete_code = 46;
