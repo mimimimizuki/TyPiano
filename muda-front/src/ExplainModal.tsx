@@ -14,7 +14,7 @@ export const ExplainModal: React.FC<{ isOpen: boolean; toClose: () => void }> =
           <h3>モード</h3>
           <p style={{ paddingLeft: 10 }}>
             コンソールモード …
-            見慣れたコンソール画面で音楽を奏でることができるモード:
+            見慣れたコンソール画面で音楽を奏でることができるモード
           </p>
           <p style={{ paddingLeft: 10 }}>
             リアルタイムモード … リアルタイムで音楽を奏でることができるモード
@@ -63,6 +63,7 @@ export const ExplainModal: React.FC<{ isOpen: boolean; toClose: () => void }> =
             <div>
               <h4>入力の文字を間違えたときは*</h4>
               <p> deleteやbackspaceで削除ができるよ</p>
+              <p> 自動削除の機能もあるよ</p>
               <p> 例</p>
               <p> dofre → dore</p> <p> dorwmi → domi </p>
             </div>
