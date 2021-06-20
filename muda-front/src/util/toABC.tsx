@@ -25,7 +25,7 @@ function toABC(beforeNote: string,counter:number, lengthCounter:number) {
     afterNote += "^A";
   } else if (beforeNote === "shi") {
     afterNote += "B";
-  } else if (beforeNote === " ") {
+  } else if (beforeNote === "␣") {
     afterNote += "z";
   } else {
     if (beforeNote[1] == "/") {

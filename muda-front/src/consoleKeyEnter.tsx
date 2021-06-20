@@ -16,7 +16,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
   var tmpNoteStr = "";
   var tmpNoteABCStr = "";
-  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra", " "];
+  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra", "␣"];
 
   const wait = (sec: any) => {
     return new Promise((resolve, reject) => {
@@ -54,9 +54,9 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           if (oneNote === "sh" || oneNote[0] === "#") {
             oneNote += tmpNoteStr[pointer + 2];
             pointer += 3;
-          } else if (oneNote[0] === " ") {
+          } else if (oneNote[0] === "␣") {
             pointer += 1;
-            oneNote = " "
+            oneNote = "␣"
           } else {
             pointer += 2;
           }
@@ -101,14 +101,14 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           if (oneNote === "sh" || oneNote[0] === "#") {
               oneNote += tmpNoteStr[pointer + 2];
               pointer += 3;
-          } else if (oneNote[0] === " ") {
+          } else if (oneNote[0] === "␣") {
               pointer += 1;
-              oneNote = " "
+              oneNote = "␣"
             } else {
               pointer += 2;
           }
           if (noteTypeArray.includes(oneNote)) {
-              if (oneNote === " ") {
+              if (oneNote === "␣") {
                   await wait(noteConfig.restLength);
               } else {
                   var beep_time = noteConfig.noteLength;
@@ -168,7 +168,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
         tmpNoteStr += ",";
         setNoteStr(tmpNoteStr);
       } else if (keyCode === keyCodeList.space_code) {
-        tmpNoteStr += " ";
+        tmpNoteStr += "␣";
         setNoteStr(tmpNoteStr);
       } else if (keyCode === 187) {
         tmpNoteStr += "+";
