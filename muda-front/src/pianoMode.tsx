@@ -32,6 +32,21 @@ const blackKeyStylesOn = {
   backgroundColor: "#aaabcb",
 };
 
+const blackKeyHalfStyles = {
+  height: 150,
+  width: 16,
+  backgroundColor: "black",
+  border: "1px solid black",
+  marginLeft: -17,
+  marginRight: 0,
+  zIndex: 1,
+};
+
+const blackKeyHalfStylesOn = {
+  ...blackKeyHalfStyles,
+  backgroundColor: "#aaabcb",
+};
+
 const keyLong = {
   position: "fixed" as "fixed",
   bottom: 0,
@@ -54,15 +69,20 @@ const WhiteKey: React.FC<{ nowplay: boolean }> = ({ nowplay }) => {
   return <div style={nowplay ? keyStylesOn : keyStyles}></div>;
 };
 
-const BlackKey: React.FC<{ nowplay: boolean }> = ({ nowplay }) => {
-  return <div style={nowplay ? blackKeyStylesOn : blackKeyStyles}></div>;
+const BlackKey: React.FC<{ nowplay: boolean; last: boolean }> = ({
+  nowplay,
+  last,
+}) => {
+  const style = last ? blackKeyHalfStyles : blackKeyStyles;
+  const styleOn = last ? blackKeyHalfStylesOn : blackKeyStylesOn;
+  return <div style={nowplay ? styleOn : style}></div>;
 };
 
 const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   const [noteList, setNoteList] = useState<string>("");
 
   const windowDimensions = useWindowDimensions();
-  const keyNum = windowDimensions.width / 64;
+  const keyNum = Math.floor(windowDimensions.width / 65);
   const [tone, counter] = useReceiveKeyEnter();
 
   const list = [];
@@ -86,6 +106,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
         list.push(
           <BlackKey
             key={index + 0.5}
+            last={index === keyNum - 1}
             nowplay={playable && !doRemove ? tone === "#do" : false}
           />
         );
@@ -100,6 +121,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
         list.push(
           <BlackKey
             key={index + 0.5}
+            last={index === keyNum - 1}
             nowplay={playable && !doRemove ? tone === "#re" : false}
           />
         );
@@ -122,6 +144,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
         list.push(
           <BlackKey
             key={index + 0.5}
+            last={index === keyNum - 1}
             nowplay={playable && !doRemove ? tone === "#fa" : false}
           />
         );
@@ -133,6 +156,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
         list.push(
           <BlackKey
             key={index + 0.5}
+            last={index === keyNum - 1}
             nowplay={playable && !doRemove ? tone === "#so" : false}
           />
         );
@@ -147,6 +171,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
         list.push(
           <BlackKey
             key={index + 0.5}
+            last={index === keyNum - 1}
             nowplay={playable && !doRemove ? tone === "#ra" : false}
           />
         );
@@ -214,33 +239,63 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
 
 export const PianoBase: React.FC<{ inPiano: boolean }> = ({ inPiano }) => {
   const windowDimensions = useWindowDimensions();
-  const keyNum = windowDimensions.width / 64;
+  const keyNum = Math.floor(windowDimensions.width / 65);
 
   const list = [];
-  for (let index = 0; index < keyNum; index++) {
+  for (let index = 0; index < keyNum - 1; index++) {
     switch (index % 7) {
       case 0:
         list.push(<WhiteKey key={index} nowplay={false} />);
-        list.push(<BlackKey key={index + 0.5} nowplay={false} />);
+        list.push(
+          <BlackKey
+            last={index === keyNum - 1}
+            key={index + 0.5}
+            nowplay={false}
+          />
+        );
         break;
       case 1:
         list.push(<WhiteKey key={index} nowplay={false} />);
-        list.push(<BlackKey key={index + 0.5} nowplay={false} />);
+        list.push(
+          <BlackKey
+            last={index === keyNum - 1}
+            key={index + 0.5}
+            nowplay={false}
+          />
+        );
         break;
       case 2:
         list.push(<WhiteKey key={index} nowplay={false} />);
         break;
       case 3:
         list.push(<WhiteKey key={index} nowplay={false} />);
-        list.push(<BlackKey key={index + 0.5} nowplay={false} />);
+        list.push(
+          <BlackKey
+            last={index === keyNum - 1}
+            key={index + 0.5}
+            nowplay={false}
+          />
+        );
         break;
       case 4:
         list.push(<WhiteKey key={index} nowplay={false} />);
-        list.push(<BlackKey key={index + 0.5} nowplay={false} />);
+        list.push(
+          <BlackKey
+            last={index === keyNum - 1}
+            key={index + 0.5}
+            nowplay={false}
+          />
+        );
         break;
       case 5:
         list.push(<WhiteKey key={index} nowplay={false} />);
-        list.push(<BlackKey key={index + 0.5} nowplay={false} />);
+        list.push(
+          <BlackKey
+            last={index === keyNum - 1}
+            key={index + 0.5}
+            nowplay={false}
+          />
+        );
         break;
       case 6:
         list.push(<WhiteKey key={index} nowplay={false} />);
