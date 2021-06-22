@@ -43,11 +43,11 @@ const Top: React.FC<{
             <span>使い方</span>
           </button>
           <div style={{ marginTop: 50 }}>
-            <button className="btn" onClick={() => console()}>
-              <span>コンソールモード</span>
-            </button>
             <button className="btn" onClick={() => piano()}>
-              ピアノモード
+              <span>ピアノモード</span>
+            </button>
+            <button className="btn" onClick={() => console()}>
+              コンソールモード
             </button>
           </div>
         </div>
