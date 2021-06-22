@@ -40,11 +40,13 @@ https://user-images.githubusercontent.com/65712721/122904514-626a9880-d38b-11eb-
   </tr>
   <tr>
     <th>担当</th>
-    <td></td>
+    <td>
+      <a href="https://github.com/chum0n">@chum0n</a> : アプリ案の提案、主にコンソールモードの実装<br>
+    </td>
   </tr>
   <tr>
     <th>開発期間</th>
-    <td></td>
+    <td>3日</td>
   </tr>
   <tr>
     <th>使用技術</th>
