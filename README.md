@@ -44,10 +44,10 @@ https://user-images.githubusercontent.com/65712721/122904514-626a9880-d38b-11eb-
   </tr>
   <tr>
     <th>開発期間</th>
-    <td></td>
+    <td>約3日</td>
   </tr>
   <tr>
     <th>使用技術</th>
-    <td>React.js / TypeScript / abcjs </td>
+    <td>React.js / TypeScript </td>
   </tr>
 </table>
