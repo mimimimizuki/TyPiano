@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-modal": "^3.14.3"
-  },
-  "devDependencies": {
-    "@types/react-modal": "^3.12.0"
-  }
-}
