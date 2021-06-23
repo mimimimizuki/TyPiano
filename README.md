@@ -4,7 +4,7 @@
 
 2021年6月19日〜20日に開催された[サポーターズ 技育CAMP ハッカソンvol.4「無駄開発をしよう！」](https://talent.supporterz.jp/events/f59d36af-3a00-42de-a4d2-083c12126015/)にて学生4人で制作し、[努力賞](https://twitter.com/geek_pjt/status/1406550908889042947?s=20)を受賞しました🎉🎉🎉
 
-**こちらから遊べます！** → https://mimimimizuki.github.io/mudaApp/
+**こちらから遊べます！** → https://mimimimizuki.github.io/TyPiano/
 
 ハッカソン成果発表時のスライドは[こちら](https://docs.google.com/presentation/d/1iWeoK-Tp4euqyBQ9DcGpPeAGV6k6PfEZLSq6YbRqlio/edit?usp=sharing)
 
