@@ -189,6 +189,7 @@ const useReceiveKeyEnter = (): [note, number] => {
     return () => {
       document.removeEventListener("keydown", setFromNone);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [receivedKey]);
   return [note, nowCounter];
 };
