@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import playNote from "./util/playNote";
 import toABC from "./util/toABC";
 import * as keyCodeList from "./common/keyCode";
-import * as noteConfig from "./common/noteConfig"
+import * as noteConfig from "./common/noteConfig";
 
 const useConsoleKeyEnter = (): [string, string[], string[]] => {
   // 今のドレミ
   const [noteStr, setNoteStr] = useState<string>("");
   // 今のABC
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [noteABCStr, setNoteABCStr] = useState<string>("");
   // 今までのドレミを保持する配列
   const [noteStrHist, setNoteStrHist] = useState<string[]>([]);
@@ -16,7 +17,21 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
 
   var tmpNoteStr = "";
   var tmpNoteABCStr = "";
-  var noteTypeArray = ["do", "re", "mi", "fa", "so", "ra", "shi", "#do", "#re", "#fa", "#so", "#ra", "␣"];
+  var noteTypeArray = [
+    "do",
+    "re",
+    "mi",
+    "fa",
+    "so",
+    "ra",
+    "shi",
+    "#do",
+    "#re",
+    "#fa",
+    "#so",
+    "#ra",
+    "␣",
+  ];
 
   const wait = (sec: any) => {
     return new Promise((resolve, reject) => {
@@ -56,7 +71,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             pointer += 3;
           } else if (oneNote[0] === "␣") {
             pointer += 1;
-            oneNote = "␣"
+            oneNote = "␣";
           } else {
             pointer += 2;
           }
@@ -66,7 +81,7 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
             lengthCounter = 0;
             // setNoteABCStr(tmpNoteABCStr)
           } else {
-            pointer -= 1
+            pointer -= 1;
           }
         }
         // ドレミとABCを配列に入れる
@@ -80,15 +95,15 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
         pointer = 0;
         octaveCounter = 0;
         while (pointer + 1 < tmpNoteStr.length) {
-        　if (tmpNoteStr[pointer] === ",") {
+          if (tmpNoteStr[pointer] === ",") {
             octaveCounter -= 1;
             pointer += 1;
             continue;
-        　} else if (tmpNoteStr[pointer] === ".") {
+          } else if (tmpNoteStr[pointer] === ".") {
             octaveCounter += 1;
             pointer += 1;
             continue;
-        　} else if (tmpNoteStr[pointer] === "+") {
+          } else if (tmpNoteStr[pointer] === "+") {
             pointer += 1;
             lengthCounter += 1;
             continue;
@@ -99,31 +114,32 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
           }
           oneNote = tmpNoteStr.substr(pointer, 2);
           if (oneNote === "sh" || oneNote[0] === "#") {
-              oneNote += tmpNoteStr[pointer + 2];
-              pointer += 3;
+            oneNote += tmpNoteStr[pointer + 2];
+            pointer += 3;
           } else if (oneNote[0] === "␣") {
-              pointer += 1;
-              oneNote = "␣"
-            } else {
-              pointer += 2;
+            pointer += 1;
+            oneNote = "␣";
+          } else {
+            pointer += 2;
           }
           if (noteTypeArray.includes(oneNote)) {
-              if (oneNote === "␣") {
-                  await wait(noteConfig.restLength);
-              } else {
-                  var beep_time = noteConfig.noteLength;
-                  if (lengthCounter > 0) {
-                    beep_time = beep_time * (2*lengthCounter);
-                  } else if (lengthCounter < 0) {
-                    beep_time = beep_time / (-2*lengthCounter);
-                  }
-                  playNote(oneNote,octaveCounter,beep_time)
-                  octaveCounter = 0;
-                  lengthCounter = 0
-                  await wait(beep_time);
+            if (oneNote === "␣") {
+              await wait(noteConfig.restLength);
+            } else {
+              var beep_time = noteConfig.noteLength;
+              if (lengthCounter > 0) {
+                beep_time = beep_time * (2 * lengthCounter);
+              } else if (lengthCounter < 0) {
+                beep_time = beep_time / (-2 * lengthCounter);
               }
-          } else { // ミスタイプのとき
-              pointer -= 1
+              playNote(oneNote, octaveCounter, beep_time);
+              octaveCounter = 0;
+              lengthCounter = 0;
+              await wait(beep_time);
+            }
+          } else {
+            // ミスタイプのとき
+            pointer -= 1;
           }
         }
         tmpNoteStr = "";
@@ -176,8 +192,11 @@ const useConsoleKeyEnter = (): [string, string[], string[]] => {
       } else if (keyCode === 189) {
         tmpNoteStr += "-";
         setNoteStr(tmpNoteStr);
-      } else if (keyCode === keyCodeList.backspace_code || keyCode === keyCodeList.delete_code) {
-        tmpNoteStr = tmpNoteStr.substring(0, tmpNoteStr.length-1);
+      } else if (
+        keyCode === keyCodeList.backspace_code ||
+        keyCode === keyCodeList.delete_code
+      ) {
+        tmpNoteStr = tmpNoteStr.substring(0, tmpNoteStr.length - 1);
         setNoteStr(tmpNoteStr);
       } else {
         // setReceivedKey("none");
