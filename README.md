@@ -44,7 +44,7 @@ https://user-images.githubusercontent.com/65712721/122904514-626a9880-d38b-11eb-
       <a href="https://github.com/chum0n">@chum0n</a> : アプリ案の提案、主にコンソールモードの実装<br>
       <a href="https://github.com/mimimimizuki">@mimimimizuki</a> : <br>
       <a href="https://github.com/Eri-0910">@Eri-0910</a> : デザイン、フロントエンド<br>
-      <a href="https://github.com/knknk98">@knknk98</a> : 企画/スライド作成など非開発系タスク、デプロイ<br>
+      <a href="https://github.com/knknk98">@knknk98</a> : 企画/スライド作成など非開発系タスク<br>
     </td>
   </tr>
   <tr>
