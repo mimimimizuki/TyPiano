@@ -1,10 +1,10 @@
 // 音をアルファベットに直す関数
-function toABC(beforeNote: string,counter:number, lengthCounter:number) {
+function toABC(beforeNote: string, counter: number, lengthCounter: number) {
   var afterNote = "";
   if (beforeNote === "do") {
     afterNote += "C";
   } else if (beforeNote === "#do") {
-    afterNote += "^C"
+    afterNote += "^C";
   } else if (beforeNote === "re") {
     afterNote += "D";
   } else if (beforeNote === "#re") {
@@ -28,24 +28,24 @@ function toABC(beforeNote: string,counter:number, lengthCounter:number) {
   } else if (beforeNote === "␣") {
     afterNote += "z";
   } else {
-    if (beforeNote[1] == "/") {
-
+    if (beforeNote[1] === "/") {
     }
   }
-  if (counter == 1){
+  if (counter === 1) {
     afterNote = afterNote.toLowerCase();
-  } else if (counter > 1){
+  } else if (counter > 1) {
     afterNote = afterNote.toLowerCase();
-    afterNote += "\'".repeat(counter);
-  } else if (counter < 0){
+    afterNote += "'".repeat(counter);
+  } else if (counter < 0) {
     afterNote += ",".repeat(-counter);
-  } 
+  }
   if (lengthCounter > 0) {
-    afterNote += (2**lengthCounter).toString();
+    afterNote += (2 ** lengthCounter).toString();
   } else if (lengthCounter < 0) {
-    afterNote += "1/"+(2**(-1*lengthCounter)).toString();
+    afterNote += "1/" + (2 ** (-1 * lengthCounter)).toString();
   }
   return afterNote
+
 }
 
 export default toABC;
