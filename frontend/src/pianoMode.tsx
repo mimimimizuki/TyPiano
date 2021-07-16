@@ -92,11 +92,11 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   // どこまで有効キーにするか
   var playEndIndex = playStartIndex + 7;
   if (counter > 0){
-    playStartIndex += 7;
-    playEndIndex += 7;
+    playStartIndex += 7*counter;
+    playEndIndex += 7*counter;
   } else if (counter < 0) {
-    playStartIndex -=  7;
-    playEndIndex -= 7;
+    playStartIndex -=  7*(-counter);
+    playEndIndex -= 7*(-counter);
   } 
 
   //鍵盤作成
