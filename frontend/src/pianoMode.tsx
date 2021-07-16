@@ -88,7 +88,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   const list = [];
 
   // どこから有効キーにするか
-  var playStartIndex = Math.floor(keyNum / 7 / 2) * 7; 
+  var playStartIndex = Math.floor(keyNum / 7 / 2) * 7;
   // どこまで有効キーにするか
   var playEndIndex = playStartIndex + 7;
   if (counter > 0){
@@ -199,6 +199,7 @@ const PianoMode: React.FC<{ doRemove: boolean }> = ({ doRemove }) => {
   useEffect(() => {
     var addTone = toABC(tone, counter, 0);
     setNoteList((prevNoteList) => prevNoteList + addTone);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tone]);
   abcjs.renderAbc("abc", noteList);
 
