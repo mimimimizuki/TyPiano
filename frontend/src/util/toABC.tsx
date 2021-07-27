@@ -44,8 +44,8 @@ function toABC(beforeNote: string, counter: number, lengthCounter: number) {
   } else if (lengthCounter < 0) {
     afterNote += "1/" + (2 ** (-1 * lengthCounter)).toString();
   }
-  console.log(afterNote);
-  return afterNote;
+  return afterNote
+
 }
 
 export default toABC;
